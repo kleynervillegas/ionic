@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 })
 export class HomeService {
 
-  public users: any = [];
   constructor(
     private http: HttpClient
     ) { }

@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-    <ion-list>
+    <ion-list *ngIf="permissiion">
       <ion-item *ngFor="let item of users">
         <ion-avatar slot="start">
           <img src="./assets/img/{{item.image}}" />
@@ -16,6 +16,9 @@
         <ion-icon name="search-outline"></ion-icon>
       </ion-item>
     </ion-list>
+
+    <ion-label *ngIf="!permissiion">No tienen permisos para ver los clientes </ion-label>
+
     <!-- <div class="container"> -->
     <!-- <ion-button [routerLink]="['/customers']">Go to Customers</ion-button> -->
     <!-- <button class="btn" (click)="gotoCustomers()">Go to Customers</button>

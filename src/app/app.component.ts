@@ -14,6 +14,10 @@ export class AppComponent {
      url: '/customers',
      icon: 'people'
      },
+     { title: 'Cities',
+     url: '/card',
+     icon: 'people'
+     },
   ];
   constructor() {}
 }

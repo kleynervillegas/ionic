@@ -1,0 +1,17 @@
+<ion-header>
+   <ion-toolbar color="mycolor">
+  <ion-title [routerLink]="['/customers']">card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ion-row>
+  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+       <ion-card *ngFor="let item of cities ">
+         <img src="./assets/img/{{item.image}}" />
+          <div class="card-title" > {{item.name}}</div>
+      </ion-card>
+    </ion-col>
+ </ion-row>
+<ion-content>
+
