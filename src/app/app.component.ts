@@ -18,6 +18,10 @@ export class AppComponent {
      url: '/card',
      icon: 'people'
      },
+    { title: 'Formulario',
+    url: '/form',
+    icon: 'people'
+    },
   ];
   constructor() {}
 }
