@@ -2,25 +2,31 @@
   <ion-toolbar color="mycolor">
     <ion-title [routerLink]="['/customers']">home</ion-title>
   </ion-toolbar>
+  <ion-toolbar color="mycolor">
+    <ion-searchbar
+      placeholder="Buscar"
+      animated
+      (ionChange)="searchCustomer($event)"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-    <ion-list *ngIf="permissiion">
-      <ion-item *ngFor="let item of users">
-        <ion-avatar slot="start">
-          <img src="./assets/img/{{item.image}}" />
-        </ion-avatar>
-        <ion-label>
-          <h2 class="text-list">{{item.name}}</h2>
-          <p>{{item.descrption}}</p>
-        </ion-label>
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-item>
-    </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of searchedUser">
+      <ion-avatar slot="start">
+        <img src="./assets/img/{{item.image}}" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="text-list">{{item.name}}</h2>
+        <p>{{item.descrption}}</p>
+      </ion-label>
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
 
-    <ion-label *ngIf="!permissiion">No tienen permisos para ver los clientes </ion-label>
-
-    <!-- <div class="container"> -->
-    <!-- <ion-button [routerLink]="['/customers']">Go to Customers</ion-button> -->
-    <!-- <button class="btn" (click)="gotoCustomers()">Go to Customers</button>
+  <!-- <div class="container"> -->
+  <!-- <ion-button [routerLink]="['/customers']">Go to Customers</ion-button> -->
+  <!-- <button class="btn" (click)="gotoCustomers()">Go to Customers</button>
     </div> -->
-  </ion-content>
+</ion-content>
