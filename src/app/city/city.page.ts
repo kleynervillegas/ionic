@@ -10,6 +10,7 @@ import { CardService } from 'src/services/card.service';
 export class CityPage implements OnInit {
   public id: any;
   public cities: any = [];
+  token = localStorage.getItem('token');
   constructor(
     private activatedRoute: ActivatedRoute,
     private cardService: CardService,
@@ -18,6 +19,7 @@ export class CityPage implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.getCities();
+    console.log('token',this.token);
   }
   getCities() {
     this.cardService.getCities().subscribe(res => {
@@ -25,5 +27,4 @@ export class CityPage implements OnInit {
       this.cities = this.cities.find(x => x.id == this.id);
     });
   }
-
 }

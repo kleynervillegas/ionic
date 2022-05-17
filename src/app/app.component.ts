@@ -22,6 +22,10 @@ export class AppComponent {
     url: '/form',
     icon: 'people'
     },
+    { title: 'login',
+    url: '/login',
+    icon: 'people'
+    },
   ];
   constructor() {}
 }
