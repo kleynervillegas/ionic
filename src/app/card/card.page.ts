@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Alert } from 'selenium-webdriver';
-import { CardService } from 'src/services/card.service';
+import { CardService } from 'src/app/services/card.service';
 
 @Component({
   selector: 'app-card',

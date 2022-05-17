@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from 'src/services/home.service';
+import { HomeService } from 'src/app/services/home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -10,7 +10,7 @@ export class HomePage implements OnInit {
   public users: any = [];
   public permissiion: boolean;
   public searchedUser: any;
-
+  token = localStorage.getItem('token');
   constructor(
     private router: Router,
     private homeService: HomeService,
@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.permissiion = true;
     this.getUser();
+    localStorage.clear();
   }
 
   public gotoCustomers() {
@@ -37,5 +38,14 @@ export class HomePage implements OnInit {
     if (text && text.trim() !== '') {
       this.searchedUser = this.searchedUser.filter((user: any)=>(user.name.toLowerCase().indexOf(text.toLowerCase()) > -1))
        }
+  }
+  doRefresh(event) {
+    this.getUser();
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 200);
   }
 }

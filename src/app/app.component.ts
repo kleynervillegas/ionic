@@ -24,7 +24,11 @@ export class AppComponent {
     },
     { title: 'login',
     url: '/login',
-    icon: 'people'
+    icon: 'log-in'
+    },
+    { title: 'Productos',
+    url: '/product',
+    icon: 'planet'
     },
   ];
   constructor() {}

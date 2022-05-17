@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardService } from 'src/services/card.service';
+import { CardService } from 'src/app/services/card.service';
 
 @Component({
   selector: 'app-city',
