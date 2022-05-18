@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 @Component({
@@ -16,12 +17,13 @@ export class ProductPage implements OnInit {
   public archivos: any = [];
   public name: any = [];
   private builderOptions: any;
+  private countImage=0;
 
   constructor(
     private formBuilder: FormBuilder,
     private productsService: ProductsService,
-    private sanitizer: DomSanitizer
-
+    private toastService: ToastService,
+    private sanitizer: DomSanitizer,
   ) {
 
     this.builderOptions = {
@@ -63,10 +65,19 @@ export class ProductPage implements OnInit {
   ngOnInit() {
   }
 
-  async submit() {
+   async submit() {
     if (!this.fb.invalid) {
       const data = this.fb.value;
-      const a = await this.productsService.create({ ...data, image: this.name }).subscribe(data => console.log(data), error => {
+      const a = await this.productsService.create({ ...data, image: this.name }).subscribe(data => {   
+       if(data.code===200){
+            this.toastService.toastNotific('Producto Registrado Satisfactoriamente');
+            this.fb.reset();
+            this.previsualizacion="";
+            this.showImage= false;
+            return false;
+        }
+        this.toastService.toastNotific(data.status);
+      }, error => {
         console.log(error);
         return [];
       });
@@ -74,17 +85,23 @@ export class ProductPage implements OnInit {
   }
   ///////////////////////////////////////
   capturarFile(event): any {
-    const archivoCapturado = event.target.files[0];
-    this.extraerBase64(archivoCapturado).then((imagen: any) => {
-      this.previsualizacion = imagen.base;
-    });
-    this.archivos.push(archivoCapturado);
+    if( this.countImage<6){
+      const archivoCapturado = event.target.files[0];
+      this.extraerBase64(archivoCapturado).then((imagen: any) => {
+        this.previsualizacion = imagen.base;
+      });
+      this.archivos.push(archivoCapturado);
+      return false;
+    }
+    this.toastService.toastNotific('No Puede Cargar Mas Imagenes');
   }
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);
       const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
       const reader = new FileReader();
+      this.countImage = this.countImage+1;
+      console.log( this.countImage);
       this.showImage = true;
       this.name.push($event.name);
       reader.readAsDataURL($event);

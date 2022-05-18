@@ -1,54 +1,69 @@
 <ion-header>
   <ion-toolbar color="mycolor">
-    <ion-title [routerLink]="['/home']">product</ion-title>
+    <ion-title [routerLink]="['/home']">Registro de Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="fb" (ngSubmit)="submitForm()">
-    <ion-input
-      type="text"
-      placeholder="Nombre"
-      formControlName="name"
-    ></ion-input>
-
-    <ion-input
-      type="text"
-      placeholder="Descripcion"
-      formControlName="description"
-    ></ion-input>
-
-    <ion-input
-      type="text"
-      placeholder="Precio"
-      formControlName="price"
-    ></ion-input>
-
-    <ion-input
-      type="text"
-      placeholder="Limite Minimo de Productos"
-      formControlName="stopMin"
-    ></ion-input>
-
-    <ion-input
-      type="text"
-      placeholder="Limite Maximo de Productos"
-      formControlName="stopMax"
-    ></ion-input>
-   
     <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
       <ion-input
-      type="file"
-      placeholder="cargar imagen"
-      formControlName="image"
-      (change)="capturarFile($event)"
-      accept=""
-    ></ion-input>
+        type="text"
+        placeholder="Nombre producto"
+        formControlName="name"
+      ></ion-input>
     </ion-item>
 
-    <div *ngIf="showImage">
-    <img [src]="previsualizacion" alt="" width="100px" height="100px">
-    </div>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Descripcion"
+        formControlName="description"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Precio"
+        formControlName="price"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Limite Minimo</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Minimo de Productos"
+        formControlName="stopMin"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Limite Maximo</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Maximo de Productos"
+        formControlName="stopMax"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">imagen</ion-label>
+      <ion-input
+        type="file"
+        placeholder="cargar imagen"
+        formControlName="image"
+        (change)="capturarFile($event)"
+        accept=""
+      ></ion-input>
+    </ion-item>
+
+      <ion-item *ngIf="showImage">
+        <img [src]="previsualizacion" alt="" width="100px" height="100px" />
+      </ion-item>
 
     <ion-button
       type="button"
