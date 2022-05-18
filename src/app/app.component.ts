@@ -30,6 +30,10 @@ export class AppComponent {
     url: '/product',
     icon: 'planet'
     },
+    { title: 'Publicaciones',
+    url: '/publications',
+    icon: 'planet'
+    },
   ];
   constructor() {}
 }

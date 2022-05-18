@@ -12,12 +12,9 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class ProductPage implements OnInit {
   public fb: FormGroup; // Form
-  previsualizacion: string;
-  public showImage = false;
-  public archivos: any = [];
-  public name: any = [];
+  public file: any = [];
+  public filesShow: any = [];
   private builderOptions: any;
-  private countImage=0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +52,7 @@ export class ProductPage implements OnInit {
         ],
       ],
       image: [
+        null,
         [Validators.required
         ],
       ]
@@ -68,12 +66,11 @@ export class ProductPage implements OnInit {
    async submit() {
     if (!this.fb.invalid) {
       const data = this.fb.value;
-      const a = await this.productsService.create({ ...data, image: this.name }).subscribe(data => {   
+      const a = await this.productsService.create({ ...data,image:this.filesShow}).subscribe(data => {   
        if(data.code===200){
             this.toastService.toastNotific('Producto Registrado Satisfactoriamente');
+            this.filesShow=[];
             this.fb.reset();
-            this.previsualizacion="";
-            this.showImage= false;
             return false;
         }
         this.toastService.toastNotific(data.status);
@@ -85,12 +82,12 @@ export class ProductPage implements OnInit {
   }
   ///////////////////////////////////////
   capturarFile(event): any {
-    if( this.countImage<6){
+    if( this.filesShow.length<6){
       const archivoCapturado = event.target.files[0];
       this.extraerBase64(archivoCapturado).then((imagen: any) => {
-        this.previsualizacion = imagen.base;
+        this.filesShow.push(imagen.base);
       });
-      this.archivos.push(archivoCapturado);
+      this.file.push(archivoCapturado);
       return false;
     }
     this.toastService.toastNotific('No Puede Cargar Mas Imagenes');
@@ -100,10 +97,6 @@ export class ProductPage implements OnInit {
       const unsafeImg = window.URL.createObjectURL($event);
       const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
       const reader = new FileReader();
-      this.countImage = this.countImage+1;
-      console.log( this.countImage);
-      this.showImage = true;
-      this.name.push($event.name);
       reader.readAsDataURL($event);
       reader.onload = () => {
         resolve({

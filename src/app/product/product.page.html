@@ -61,10 +61,15 @@
       ></ion-input>
     </ion-item>
 
-      <ion-item *ngIf="showImage">
-        <img [src]="previsualizacion" alt="" width="100px" height="100px" />
-      </ion-item>
-
+    <ion-item>
+      <ion-row>
+        <ion-col sizeLg="6" sizeMd="6" sizeXs="4" *ngFor="let image of filesShow">
+          <ion-card>
+            <img [src]="image" alt="" />
+          </ion-card>
+        </ion-col>       
+      </ion-row>
+    </ion-item>
     <ion-button
       type="button"
       color="primary"

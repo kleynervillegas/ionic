@@ -26,13 +26,18 @@ const routes: Routes = [
   {
     path: 'city/:id',
     loadChildren: () => import('./city/city.module').then( m => m.CityPageModule)
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'product',
     loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
+  },
+  {
+    path: 'publications',
+    loadChildren: () => import('./publications/publications.module').then( m => m.PublicationsPageModule)
   }
 
 

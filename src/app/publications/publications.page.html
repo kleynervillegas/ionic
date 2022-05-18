@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>publications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+   <ion-col sizeLg="6" sizeMd="6" sizeXs="4" *ngFor="let item of publications ">
+        <ion-card  [routerLink]="['/city',item.id]">
+          <img src="http://localhost:8000/api/products/{{item.image[0]}}" />
+          <a href="http://localhost:8000/api/products/{{item.image[0]}}">Google</a>
+           <div class="card-title" > {{item.name}}</div>
+       </ion-card>
+     </ion-col>
+  </ion-row>
+ <ion-content>

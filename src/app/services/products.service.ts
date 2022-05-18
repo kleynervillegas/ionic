@@ -24,4 +24,11 @@ export class ProductsService {
   public create(data): Observable<any> {
     return this.httpClient.post(URLS.created, data, this.options);
   }
+
+  /**
+   * getAll
+   */
+  public getAll(): Observable<any>{
+    return this.httpClient.get(URLS.getAllProducts);
+  }
 }
