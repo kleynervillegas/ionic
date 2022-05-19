@@ -22,7 +22,6 @@ export class PublicationsPage implements OnInit {
     const a = await this.productsService.getAll().subscribe(data => {
       if(data.code===200){
             this.publications= data.data;
-           console.log(this.publications);
            return false;
        }
        this.toastService.toastNotific(data.status);

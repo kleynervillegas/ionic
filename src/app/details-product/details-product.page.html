@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="mycolor">
+    <ion-title [routerLink]="['/publications']">details Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+   <ion-col sizeLg="6" sizeMd="6" sizeXs="4" *ngFor="let image of productDetails.image">
+        <ion-card>
+          <img src="https://2ee4-190-202-2-197.ngrok.io/api/products/{{image}}" style="width: 70px; height: 65px;" />
+       </ion-card>
+     </ion-col>
+  </ion-row>
+</ion-content>

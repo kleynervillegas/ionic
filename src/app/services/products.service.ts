@@ -31,4 +31,11 @@ export class ProductsService {
   public getAll(): Observable<any>{
     return this.httpClient.get(URLS.getAllProducts);
   }
+
+  /**
+   * getDetailsProduct
+   */
+  public getDetailsProduct(id): Observable<any>{
+    return this.httpClient.get(URLS.getDetailsProduct.replace(':id',id));
+  }
 }

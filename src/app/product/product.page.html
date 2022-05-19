@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="mycolor">
-    <ion-title [routerLink]="['/home']">Registro de Productos</ion-title>
+    <ion-title [routerLink]="['/publications']">Registro de Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -61,15 +61,13 @@
       ></ion-input>
     </ion-item>
 
-    <ion-item>
       <ion-row>
         <ion-col sizeLg="6" sizeMd="6" sizeXs="4" *ngFor="let image of filesShow">
           <ion-card>
-            <img [src]="image" alt="" />
+            <img [src]="image" alt="" style="width: 70px; height: 65px;" />
           </ion-card>
         </ion-col>       
       </ion-row>
-    </ion-item>
     <ion-button
       type="button"
       color="primary"
