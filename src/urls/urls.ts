@@ -6,8 +6,8 @@
 // }
 
 export const URLS = {
-    getOne: ' https://2ee4-190-202-2-197.ngrok.io/api/products/:id',
-    created: ' https://2ee4-190-202-2-197.ngrok.io/api/products',
-    getAllProducts: ' https://2ee4-190-202-2-197.ngrok.io/api/products',
-    getDetailsProduct: ' https://2ee4-190-202-2-197.ngrok.io/api/products/detailsproduct/:id',
+    getOne: 'https://4650-190-202-2-197.ngrok.io/api/products/:id',
+    created: 'https://4650-190-202-2-197.ngrok.io/api/products',
+    getAllProducts: 'https://4650-190-202-2-197.ngrok.io/api/products',
+    getDetailsProduct: 'https://4650-190-202-2-197.ngrok.io/api/products/detailsproduct/:id',
 }
