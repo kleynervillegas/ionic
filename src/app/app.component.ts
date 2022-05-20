@@ -22,10 +22,10 @@ export class AppComponent {
     url: '/form',
     icon: 'people'
     },
-    { title: 'login',
-    url: '/login',
-    icon: 'log-in'
-    },
+    // { title: 'login',
+    // url: '/login',
+    // icon: 'log-in'
+    // },
     { title: 'Productos',
     url: '/product',
     icon: 'planet'

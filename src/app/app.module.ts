@@ -7,10 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
+import { IonicInputDirective } from './directives/ionic-input.directive';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, IonicInputDirective],
   entryComponents: [],
   imports: [
     BrowserModule,

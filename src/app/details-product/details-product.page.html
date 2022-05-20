@@ -5,10 +5,26 @@
 </ion-header>
 <ion-content>
   <ion-row>
-   <ion-col sizeLg="6" sizeMd="6" sizeXs="4" *ngFor="let image of productDetails.image">
-        <ion-card>
-          <img src="https://4650-190-202-2-197.ngrok.io/api/products/{{image}}" style="width: 70px; height: 65px;" />
-       </ion-card>
-     </ion-col>
+    <ion-col sizeLg="6" sizeMd="6" sizeXs="4">
+      <ion-card *ngFor="let image of productDetails.image">
+        <img
+          src="http://localhost:8000/api/products/{{image}}"
+          style="width: 44px; height: 44px"
+        />
+      </ion-card>
+    </ion-col>
+    <ion-col sizeLg="6" sizeMd="6" sizeXs="6">
+      <h6>Nombre</h6>
+      <ion-item> {{productDetails.name}} </ion-item>
+      <h6>Precio</h6>
+      <ion-item> {{productDetails.price}} </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+      <h6>Descripción</h6>
+      <ion-item> {{productDetails.description}} </ion-item>
+    </ion-col>
   </ion-row>
 </ion-content>

@@ -15,6 +15,8 @@ export class ProductPage implements OnInit {
   public file: any = [];
   public filesShow: any = [];
   private builderOptions: any;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  public coin: any = ['Dolar','Bolivares'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +34,11 @@ export class ProductPage implements OnInit {
         ],
       ],
       description: [
+        null,
+        [Validators.required
+        ],
+      ],
+      coin: [
         null,
         [Validators.required
         ],
@@ -64,6 +71,9 @@ export class ProductPage implements OnInit {
   }
 
    async submit() {
+
+    console.log(this.fb.get('coin')?.valid);
+    
     if (!this.fb.invalid) {
       const data = this.fb.value;
       const a = await this.productsService.create({ ...data,image:this.filesShow}).subscribe(data => {   

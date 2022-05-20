@@ -1,80 +1,159 @@
 <ion-header>
   <ion-toolbar color="mycolor">
-    <ion-title [routerLink]="['/publications']">Registro de Productos</ion-title>
+    <ion-title [routerLink]="['/publications']"
+      >Registro de Productos</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="fb" (ngSubmit)="submitForm()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input
-        type="text"
-        placeholder="Nombre producto"
-        formControlName="name"
-      ></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Nombre producto"
+            formControlName="name"
+          ></ion-input>
+        </ion-item>
+        <p
+        IonicInputDirective
+          [validationItem]="fb.controls.name"
+          [value]="fb.controls.name?.value"
+        >
+        </p>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-input
-        type="text"
-        placeholder="Descripcion"
-        formControlName="description"
-      ></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
+        <ion-item>
+          <ion-label position="floating">Descripcion</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Descripcion"
+            formControlName="description"
+          ></ion-input>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="fb.controls.description?.touched && !fb.controls.description.valid"
+          >Campo Obligatorio</ion-text
+        >
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-label position="floating">Precio</ion-label>
-      <ion-input
-        type="text"
-        placeholder="Precio"
-        formControlName="price"
-      ></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col sizeLg="3" sizeMd="3" sizeXs="3">
+        <ion-item>
+          <ion-label>$</ion-label>
+          <ion-select value="dog" formControlName="coin">
+            <ion-select-option
+              value="{{item.key}}"
+              *ngFor="let item of coin | keyvalue"
+              >{{item.value}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="fb.controls.coin?.touched && !fb.controls.coin.valid"
+          >Campo Obligatorio</ion-text
+        >
+      </ion-col>
+      <ion-col sizeLg="7" sizeMd="7" sizeXs="7">
+        <ion-item>
+          <ion-label position="floating">Precio</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Precio"
+            formControlName="price"
+          ></ion-input>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="fb.controls.price?.touched && !fb.controls.price.valid"
+          >Campo Obligatorio</ion-text
+        >
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-label position="floating">Limite Minimo</ion-label>
-      <ion-input
-        type="text"
-        placeholder="Minimo de Productos"
-        formControlName="stopMin"
-      ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Limite Maximo</ion-label>
-      <ion-input
-        type="text"
-        placeholder="Maximo de Productos"
-        formControlName="stopMax"
-      ></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
+        <ion-item>
+          <ion-label position="floating">Limite Minimo</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Minimo de Productos"
+            formControlName="stopMin"
+          ></ion-input>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="fb.controls.stopMin?.touched && !fb.controls.stopMin.valid"
+          >Campo Obligatorio</ion-text
+        >
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-label position="floating">imagen</ion-label>
-      <ion-input
-        type="file"
-        placeholder="cargar imagen"
-        formControlName="image"
-        (change)="capturarFile($event)"
-        accept=""
-      ></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
+        <ion-item>
+          <ion-label position="floating">Limite Maximo</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Maximo de Productos"
+            formControlName="stopMax"
+          ></ion-input>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="fb.controls.stopMax?.touched && !fb.controls.stopMax.valid"
+          >Campo Obligatorio</ion-text
+        >
+      </ion-col>
+    </ion-row>
 
-      <ion-row>
-        <ion-col sizeLg="6" sizeMd="6" sizeXs="4" *ngFor="let image of filesShow">
-          <ion-card>
-            <img [src]="image" alt="" style="width: 70px; height: 65px;" />
-          </ion-card>
-        </ion-col>       
-      </ion-row>
-    <ion-button
-      type="button"
-      color="primary"
-      expand="block"
-      [disabled]="this.fb.invalid"
-      (click)="submit()"
-      >Agregar productos</ion-button
-    >
+    <ion-row>
+      <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
+        <ion-item>
+          <ion-label position="floating">imagen</ion-label>
+          <ion-input
+            type="file"
+            placeholder="cargar imagen"
+            formControlName="image"
+            (change)="capturarFile($event)"
+            accept=""
+          ></ion-input>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="fb.controls.image?.touched && !fb.controls.image.valid"
+          >Campo Obligatorio</ion-text
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let image of filesShow">
+        <ion-card>
+          <img [src]="image" alt="" style="width: 70px; height: 65px" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="4" offset="3">
+        <ion-button
+          type="button"
+          color="primary"
+          [disabled]="this.fb.invalid"
+          (click)="submit()"
+          >Agregar
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </form>
 </ion-content>
