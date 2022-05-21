@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastService } from 'src/app/services/toast.service';
+import { AlertController, ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ProductPage implements OnInit {
   public fb: FormGroup; // Form
   public file: any = [];
   public filesShow: any = [];
+  public countfiles = 0;
   private builderOptions: any;
   // eslint-disable-next-line @typescript-eslint/member-ordering
   public coin: any = ['Dolar', 'Bolivares'];
@@ -23,6 +25,7 @@ export class ProductPage implements OnInit {
     private productsService: ProductsService,
     private toastService: ToastService,
     private sanitizer: DomSanitizer,
+    public alertController: AlertController,
   ) {
     this.builderOptions = {
       // _id: [null],
@@ -53,16 +56,20 @@ export class ProductPage implements OnInit {
       ],
       stopMin: [
         null,
-        [Validators.required,
-          Validators.minLength(1),
-          Validators.maxLength(15),
+        [
+          Validators.required,
+          Validators.pattern('[0-9]{2,254}'),
+          // Validators.minLength(1),
+          Validators.maxLength(5),
         ],
       ],
       stopMax: [
         null,
-        [Validators.required,
-          Validators.minLength(1),
-          Validators.maxLength(15),
+        [
+          Validators.required,
+          Validators.pattern('[0-9]{2,254}'),
+          // Validators.minLength(1),
+          Validators.maxLength(5),
         ],
       ],
       image: [
@@ -96,7 +103,7 @@ export class ProductPage implements OnInit {
   }
   ///////////////////////////////////////
   capturarFile(event): any {
-    if (this.filesShow.length < 6) {
+    if (this.countfiles < 6) {
       const archivoCapturado = event.target.files[0];
       this.extraerBase64(archivoCapturado).then((imagen: any) => {
         this.filesShow.push(imagen.base);
@@ -111,6 +118,7 @@ export class ProductPage implements OnInit {
       const unsafeImg = window.URL.createObjectURL($event);
       const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
       const reader = new FileReader();
+      this.countfiles = this.countfiles + 1;
       reader.readAsDataURL($event);
       reader.onload = () => {
         resolve({
@@ -127,5 +135,27 @@ export class ProductPage implements OnInit {
       return null;
     }
   });
+  async deleteImage(key: number) {
+    const alert = await this.alertController.create({
+      header: 'Desea eliminar esta imagen',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('no cancele');
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            delete this.filesShow[key];
+            this.countfiles = this.countfiles - 1;
+          }
+        }
+      ]
+    });
+    await alert.present();
+    const result = await alert.onDidDismiss();
+  }
 
 }

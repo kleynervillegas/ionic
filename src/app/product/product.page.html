@@ -88,9 +88,9 @@
     </ion-row>
 
     <ion-row>
-      <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let image of filesShow">
-        <ion-card>
-          <img [src]="image" alt="" style="width: 70px; height: 65px" />
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let image of filesShow | keyvalue">
+        <ion-card (click)="deleteImage(image.key)" title="eliminer">
+          <img [src]="image.value" alt="" style="width: 70px; height: 65px" />
         </ion-card>
       </ion-col>
     </ion-row>
