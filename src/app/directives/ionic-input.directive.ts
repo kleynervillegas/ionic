@@ -21,20 +21,21 @@ export class IonicInputDirective {
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngOnChanges() {
-    console.log('sd');
     // Buscamos el tipo de error e introducimos al elemento
     // el mensaje de error correspondiente
-    // Requerido}
-    if (
-      this.validationItem?.errors?.required ||
-      (this.formArrayControlName
-        ? this.validationItem?.controls[this.formArrayControlName]?.errors
-            ?.required
-        : false)
-    ) {
-      this.htmlELement.innerText = 'Este campo es requerido';
-      return;
-    }
-  }
+    // Requerido 
+    // if (
+    //   this.validationItem?.errors?.required ||
+    //   (this.formArrayControlName
+    //     ? this.validationItem?.controls[this.formArrayControlName]?.errors
+    //         ?.required
+    //     : false)
+    // ) {
+    //   console.log('sd');
 
+
+    //   this.htmlELement.innerText = 'Este campo es requerido';
+    //   return;
+    // } 
+  }
 }

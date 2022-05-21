@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,7 +16,7 @@ export class ProductPage implements OnInit {
   public filesShow: any = [];
   private builderOptions: any;
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  public coin: any = ['Dolar','Bolivares'];
+  public coin: any = ['Dolar', 'Bolivares'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,13 +24,15 @@ export class ProductPage implements OnInit {
     private toastService: ToastService,
     private sanitizer: DomSanitizer,
   ) {
-
     this.builderOptions = {
       // _id: [null],
       name: [
         null,
         [
-          Validators.required
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+          Validators.pattern('[a-zA-Z-0-9 ]{2,254}'),
         ],
       ],
       description: [
@@ -45,17 +47,22 @@ export class ProductPage implements OnInit {
       ],
       price: [
         null,
-        [Validators.required
+        [Validators.required,
+        Validators.pattern('[0-9,. ]*.'),
         ],
       ],
       stopMin: [
         null,
-        [Validators.required
+        [Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(15),
         ],
       ],
       stopMax: [
         null,
-        [Validators.required
+        [Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(15),
         ],
       ],
       image: [
@@ -70,29 +77,26 @@ export class ProductPage implements OnInit {
   ngOnInit() {
   }
 
-   async submit() {
-
-    console.log(this.fb.get('coin')?.valid);
-    
+  async submit() {
     if (!this.fb.invalid) {
       const data = this.fb.value;
-      const a = await this.productsService.create({ ...data,image:this.filesShow}).subscribe(data => {   
-       if(data.code===200){
-            this.toastService.toastNotific('Producto Registrado Satisfactoriamente');
-            this.filesShow=[];
-            this.fb.reset();
-            return false;
+      const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
+        if (data.code === 200) {
+          this.toastService.toastNotific('Producto Registrado Satisfactoriamente');
+          this.filesShow = [];
+          this.fb.reset();
+          return false;
         }
         this.toastService.toastNotific(data.status);
       }, error => {
-        console.log(error);
+        this.toastService.toastNotific(error);
         return [];
       });
     }
   }
   ///////////////////////////////////////
   capturarFile(event): any {
-    if( this.filesShow.length<6){
+    if (this.filesShow.length < 6) {
       const archivoCapturado = event.target.files[0];
       this.extraerBase64(archivoCapturado).then((imagen: any) => {
         this.filesShow.push(imagen.base);
