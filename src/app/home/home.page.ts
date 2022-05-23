@@ -11,6 +11,32 @@ export class HomePage implements OnInit {
   public permissiion: boolean;
   public searchedUser: any;
   token = localStorage.getItem('token');
+  public appPages = [
+    { title: 'home',
+     url: '/home',
+      icon: 'home'
+     },
+    { title: 'Costomres',
+     url: '/customers',
+     icon: 'people'
+     },
+     { title: 'Cities',
+     url: '/card',
+     icon: 'people'
+     },
+    { title: 'Formulario',
+    url: '/form',
+    icon: 'people'
+    },
+    { title: 'Productos',
+    url: '/product',
+    icon: 'planet'
+    },
+    { title: 'Publicaciones',
+    url: '/publications',
+    icon: 'planet'
+    },
+  ];
   constructor(
     private router: Router,
     private homeService: HomeService,
