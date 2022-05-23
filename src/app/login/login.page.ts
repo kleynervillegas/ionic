@@ -44,6 +44,6 @@ export class LoginPage implements OnInit {
 
 
     // localStorage.setItem('token',this.token);
-    this.router.navigate(['/card']);
+    this.router.navigate(['/home']);
   }
 }
