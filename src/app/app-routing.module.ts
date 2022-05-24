@@ -1,57 +1,33 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { BrowserModule  } from '@angular/platform-browser';
 
 const routes: Routes = [
+  
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'customers',
-    loadChildren: () => import('./customers/customers.module').then( m => m.CustomersPageModule)
-  },
-  {
-    path: 'card',
-    loadChildren: () => import('./card/card.module').then( m => m.CardPageModule)
-  },
-  {
-    path: 'form',
-    loadChildren: () => import('./form/form.module').then( m => m.FormPageModule)
-  },
-  {
-    path: 'city/:id',
-    loadChildren: () => import('./city/city.module').then( m => m.CityPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'product',
-    loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'publications',
-    loadChildren: () => import('./publications/publications.module').then( m => m.PublicationsPageModule)
-  },
-  {
-    path: 'detailsProduct/:id',
-    loadChildren: () => import('./details-product/details-product.module').then( m => m.DetailsProductPageModule)
+    path: '**',
+    redirectTo: 'login'
   }
-
-
-
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+   imports: [
+     BrowserModule,
+     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+   ],
+  exports: []
 })
 export class AppRoutingModule {}

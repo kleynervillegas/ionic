@@ -11,29 +11,25 @@ export class HomePage implements OnInit {
   public permissiion: boolean;
   public searchedUser: any;
   token = localStorage.getItem('token');
-  public appPages = [
-    { title: 'home',
-     url: '/home',
-      icon: 'home'
-     },
+  public appPages = [ 
     { title: 'Costomres',
-     url: '/customers',
+     url: '/home/customers',
      icon: 'people'
      },
      { title: 'Cities',
-     url: '/card',
+     url: '/home/card',
      icon: 'people'
      },
     { title: 'Formulario',
-    url: '/form',
+    url: '/home/form',
     icon: 'people'
     },
     { title: 'Productos',
-    url: '/product',
+    url: '/home/product',
     icon: 'planet'
     },
     { title: 'Publicaciones',
-    url: '/publications',
+    url: '/home/publications',
     icon: 'planet'
     },
   ];

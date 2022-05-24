@@ -7,12 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
-
+import { HomePage} from './home/home.page'
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
@@ -20,6 +20,7 @@ import { ReactiveFormsModule} from '@angular/forms';
     FormsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    // providers: [HomePage],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
