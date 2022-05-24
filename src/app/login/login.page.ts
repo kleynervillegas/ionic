@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
-
+import { LoginService } from '../services/login.service';
+import { ToastService } from '../services/toast.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,7 +15,9 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private toastService: ToastService,
   ) {
     this.builderOptions = {
       // _id: [null],
@@ -23,7 +25,7 @@ export class LoginPage implements OnInit {
         null,
         [
           Validators.required,
-          Validators.minLength(8),
+          Validators.minLength(4),
           Validators.maxLength(30),
           // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
         ],
@@ -39,11 +41,17 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-  login() {
-    console.log(this.fb.value);
 
+  async login() {
+    const playload = this.fb.value;
+    const auth = await this.loginService.validateUser(playload).subscribe(data => {
+      if (data.code === 200 && data.message === 'Autenticacion Correcta') {
+        this.toastService.toastNotific(data.message);
+        this.router.navigate(['/home/publications']);
+        return false;
+      }
+      this.toastService.toastNotific(data.message);
+    });
 
-    // localStorage.setItem('token',this.token);
-    this.router.navigate(['/home/publications']);
   }
 }
