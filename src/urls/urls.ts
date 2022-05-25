@@ -7,7 +7,7 @@ export const URLS = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const URLSAuthentication = {
-    validateAuthentication: 'http://localhost:8000/api/authentication/validate_user',
+    validateAuthentication: 'http://localhost:8000/api/auth/login',
 };
 
 // export const URLS = {
