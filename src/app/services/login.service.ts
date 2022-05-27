@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { URLS, URLSAuthentication } from 'src/urls/urls';
+import { LocalStorageService } from './LocalStorage/local-storage.service';
+import { ResponseDTO } from 'src/shared/dtos/responseDto';
+import { ToastService } from '../services/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +19,30 @@ export class LoginService {
   };
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private localStorageController: LocalStorageService,
+    private toastService: ToastService,
+
   ) { }
 
   /**
    * validateUser
    */
-  public validateUser(data): Observable<any> {
-    return this.http.post(URLSAuthentication.validateAuthentication, data, this.options);
+  public validateUser(data): Observable<ResponseDTO> {
+    return this.http.post(URLSAuthentication.validateAuthentication, data, this.options).pipe(
+      map((response: ResponseDTO) => {
+            console.log(response);
+        if (response.code === 200) {
+          this.localStorageController.setItem(response.token);
+          this.toastService.toastNotific(response.message);
+          return response.code;
+        }
+        this.toastService.toastNotific(response.message);
+        return response.code;
+      }),
+      catchError(({ error }) => [])
+    );
   }
+
 
 }

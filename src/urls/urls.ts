@@ -4,10 +4,9 @@ export const URLS = {
     getAllProducts: 'http://localhost:8000/api/auth/products',
     getDetailsProduct: 'http://localhost:8000/api/auth/products/detailsproduct/:id',
 };
-
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const URLSAuthentication = {
-    validateAuthentication: 'http://localhost:8000/api/auth/login',
+    validateAuthentication: 'http://localhost:8000/api/login',
 };
 
 // export const URLS = {

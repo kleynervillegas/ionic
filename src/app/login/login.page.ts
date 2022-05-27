@@ -45,12 +45,12 @@ export class LoginPage implements OnInit {
   async login() {
     const playload = this.fb.value;
     const auth = await this.loginService.validateUser(playload).subscribe(data => {
-      if (data.code === 200 && data.message === 'Autenticacion Correcta') {
-        this.toastService.toastNotific(data.message);
+      console.log(data);
+      if (data === 200) {
         this.router.navigate(['/home/publications']);
         return false;
       }
-      this.toastService.toastNotific(data.message);
+      // this.toastService.toastNotific(data.message);
     });
 
   }

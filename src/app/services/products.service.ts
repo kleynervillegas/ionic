@@ -8,10 +8,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductsService {
+  public token = localStorage.getItem('token');
   public options = {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': 'Bearer'+this.token,
     }
   };
 
@@ -29,6 +31,7 @@ export class ProductsService {
    * getAll
    */
   public getAll(): Observable<any>{
+    console.log(this.token);
     return this.httpClient.get(URLS.getAllProducts);
   }
 
