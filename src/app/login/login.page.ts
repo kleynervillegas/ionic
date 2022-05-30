@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { LoginService } from '../services/login.service';
-import { ToastService } from '../services/toast.service';
+import { LoginService } from '../services/login/login.service';
+import { ToastService } from '../services/toast/toast.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -45,7 +45,6 @@ export class LoginPage implements OnInit {
   async login() {
     const playload = this.fb.value;
     const auth = await this.loginService.validateUser(playload).subscribe(data => {
-      console.log(data);
       if (data === 200) {
         this.router.navigate(['/home/publications']);
         return false;

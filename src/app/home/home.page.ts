@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from 'src/app/services/home.service';
+import { HomeService } from 'src/app/services/home/home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.permissiion = true;
     this.getUser();
-    localStorage.clear();
+    // localStorage.clear();
   }
 
   public gotoCustomers() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/services/products.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { ProductsService } from 'src/app/services/products/products.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-publications',

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ToastService } from 'src/app/services/toast.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlertController, ToastController } from '@ionic/angular';
 
 

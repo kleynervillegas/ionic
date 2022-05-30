@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { URLS, URLSAuthentication } from 'src/urls/urls';
-import { LocalStorageService } from './LocalStorage/local-storage.service';
+import { LocalStorageService } from '../LocalStorage/local-storage.service';
 import { ResponseDTO } from 'src/shared/dtos/responseDto';
-import { ToastService } from '../services/toast.service';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root'

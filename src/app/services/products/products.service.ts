@@ -31,7 +31,6 @@ export class ProductsService {
    * getAll
    */
   public getAll(): Observable<any>{
-    console.log(this.token);
     return this.httpClient.get(URLS.getAllProducts);
   }
 
