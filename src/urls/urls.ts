@@ -2,11 +2,13 @@ export const URLS = {
     getOne: 'http://localhost:8000/api/auth/products/:id',
     created: 'http://localhost:8000/api/auth/products',
     getAllProducts: 'http://localhost:8000/api/auth/products',
-    getDetailsProduct: 'http://localhost:8000/api/auth/products/detailsproduct/:id',
+    getDetailsProduct: 'http://localhost:8000/api/products/detailsproduct/:id',
 };
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const URLSAuthentication = {
-    validateAuthentication: 'http://localhost:8000/api/login',
+    validateAuthentication: 'http://localhost:8000/api/registre',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    CreateUser: 'http://localhost:8000/api/login',
 };
 
 // export const URLS = {

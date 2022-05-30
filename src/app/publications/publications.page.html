@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="mycolor">
-    <ion-title [routerLink]="['/home']">publications</ion-title>
+    <ion-title [routerLink]="['/home/product']">publications</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
     >
       <ion-card [routerLink]="['/home/detailsProduct',item.id]">
         <img
-          src="http://localhost:8000/api/get_image/{{item.image[0]}}"
+          src="http://localhost:8000/api/products/get_image/{{item.image[0]}}"
           style="width: 70px; height: 65px"
         />
         <div class="card-title">{{item.name}}</div>
