@@ -13,7 +13,7 @@ export class ProductsService {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
-      'authorization': 'Bearer'+this.token,
+      'authorization': 'Bearer '+this.token,
     }
   };
 
@@ -31,7 +31,7 @@ export class ProductsService {
    * getAll
    */
   public getAll(): Observable<any>{
-    return this.httpClient.get(URLS.getAllProducts);
+    return this.httpClient.get(URLS.getAllProducts,this.options);
   }
 
   /**

@@ -9,6 +9,14 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 })
 export class PublicationsPage implements OnInit {
   public publications:any =[];
+  // public options = {
+  //   headers: {
+  //     // eslint-disable-next-line @typescript-eslint/naming-convention
+  //     'Content-Type': 'application/json',
+  //     'authorization': 'Bearer '+this.token,
+  //   }
+  // }
+  
   constructor(
     private productsService: ProductsService,
     private toastService: ToastService,
@@ -31,4 +39,5 @@ export class PublicationsPage implements OnInit {
      });
 
   }
+
 }

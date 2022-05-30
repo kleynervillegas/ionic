@@ -31,7 +31,6 @@ export class LoginService {
   public validateUser(data): Observable<ResponseDTO> {
     return this.http.post(URLSAuthentication.validateAuthentication, data, this.options).pipe(
       map((response: ResponseDTO) => {
-            console.log(response);
         if (response.code === 200) {
           this.localStorageController.setItem(response.token);
           this.toastService.toastNotific(response.message);
