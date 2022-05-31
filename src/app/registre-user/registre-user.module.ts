@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
-
+import { SimpleMaskModule } from 'ngx-ion-simple-mask';
 import { IonicModule } from '@ionic/angular';
-
 import { RegistreUserPageRoutingModule } from './registre-user-routing.module';
-
 import { RegistreUserPage } from './registre-user.page';
 
 @NgModule({
@@ -14,7 +12,8 @@ import { RegistreUserPage } from './registre-user.page';
     FormsModule,
     IonicModule,
     RegistreUserPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SimpleMaskModule,
   ],
   declarations: [RegistreUserPage]
 })

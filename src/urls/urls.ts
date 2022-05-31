@@ -6,9 +6,9 @@ export const URLS = {
 };
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const URLSAuthentication = {
-    validateAuthentication: 'http://localhost:8000/api/registre',
+    validateAuthentication: 'http://localhost:8000/api/login',
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    CreateUser: 'http://localhost:8000/api/login',
+    CreateUser: 'http://localhost:8000/api/registre',
 };
 
 // export const URLS = {

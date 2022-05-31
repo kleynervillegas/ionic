@@ -47,11 +47,8 @@ export class LoginService {
    * registreUser
 data   */
   public registreUser(data): Observable<ResponseDTO> {
-    console.log(URLSAuthentication.validateAuthentication);
     return this.http.post(URLSAuthentication.CreateUser, data, this.options).pipe(
       map((response: ResponseDTO) => {
-        console.log(response);
-        console.log(response);
         if (response.code === 200) {
           this.toastService.toastNotific(response.message);
           return response.code;
@@ -59,7 +56,12 @@ data   */
         this.toastService.toastNotific(response.message);
         return response.code;
       }),
-      catchError(({ error }) => [])
+      catchError((error) => {
+          error.error.forEach(element => {
+            this.toastService.toastNotific(element);
+          });
+        return [];
+      })
     );
   }
 
