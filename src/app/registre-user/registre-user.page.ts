@@ -2,7 +2,9 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
-import { REGEX_EMAIL } from 'src/utils/regex';
+import { REGEX_EMAIL ,REGEX_NUMERIC} from 'src/utils/regex';
+import { ValidationOnlyNumber,validationPasswordConfir } from 'src/utils/funtion';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-registre-user',
@@ -19,7 +21,9 @@ export class RegistreUserPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private toastService: ToastService
+
   ) {
     this.builderOptions = {
       // _id: [null],
@@ -36,7 +40,8 @@ export class RegistreUserPage implements OnInit {
       ],
       NumberId: [
         null,
-        [Validators.required
+        [Validators.required,
+          Validators.pattern(REGEX_NUMERIC),
         ],
       ],
       password: [
@@ -57,7 +62,7 @@ export class RegistreUserPage implements OnInit {
       ],
       password_confirmation: [
         null,
-        [Validators.required
+        [Validators.required,
         ],
       ],
       typeNumberId: [
@@ -71,7 +76,6 @@ export class RegistreUserPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(REGEX_EMAIL);
   }
 
   async registre() {
@@ -87,5 +91,11 @@ export class RegistreUserPage implements OnInit {
     });
 
   }
-
+  validationPasswor(event:any) {
+    if(event.target.value!=this.fb.get('password').value){
+      this.fb.get('password')?.addValidators([Validators.required]);
+      this.fb.updateValueAndValidity();
+      this.toastService.toastNotific('contrasenas incorrectas');
+    }
+  }
 }
