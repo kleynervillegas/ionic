@@ -1,36 +1,55 @@
 <ion-header>
   <ion-toolbar color="mycolor">
+    <ion-buttons [routerLink]="['/login']" slot="start">
+      <ion-button>
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title [routerLink]="['/login']">RegistreUser</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
- 
   <form [formGroup]="fb" (ngSubmit)="registre()">
     <ion-row>
       <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
         <ion-card>
           <ion-item>
             <ion-label position="floating">Nombres Completos</ion-label>
-            <ion-input type="text" formControlName="FullName" placeholder="Nombre Completo">
+            <ion-input
+              type="text"
+              formControlName="FullName"
+              placeholder="Nombre Completo"
+            >
             </ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Apellidos Completos</ion-label>
-            <ion-input type="text" formControlName="LastNames" placeholder="Apellidos Completos">
+            <ion-input
+              type="text"
+              formControlName="LastNames"
+              placeholder="Apellidos Completos"
+            >
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Tipo de Cedula</ion-label>
             <ion-select value="dog" formControlName="typeNumberId">
-              <ion-select-option value="{{item.key}}" *ngFor="let item of typeNumberId | keyvalue">{{item.value}}
+              <ion-select-option
+                value="{{item.key}}"
+                *ngFor="let item of typeNumberId | keyvalue"
+                >{{item.value}}
               </ion-select-option>
             </ion-select>
-          </ion-item>     
+          </ion-item>
 
           <ion-item>
             <ion-label position="floating">Cedula de Identidad</ion-label>
-            <ion-input type="text" formControlName="NumberId" placeholder="Cedula de Identidad">
+            <ion-input
+              type="text"
+              formControlName="NumberId"
+              placeholder="Cedula de Identidad"
+            >
             </ion-input>
           </ion-item>
 
@@ -45,22 +64,34 @@
           </ion-item>
           <ion-item>
             <ion-label position="floating">Contrasena</ion-label>
-            <ion-input type="password" formControlName="password" placeholder="Contrasena">
+            <ion-input
+              type="password"
+              formControlName="password"
+              placeholder="Contrasena"
+            >
             </ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Confirmar Contrasena</ion-label>
-            <ion-input type="password" (ionBlur)="validationPasswor($event)" formControlName="password_confirmation" placeholder="Confirmar Contrasena">
+            <ion-input
+              type="password"
+              (ionBlur)="validationPasswor($event)"
+              formControlName="password_confirmation"
+              placeholder="Confirmar Contrasena"
+            >
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Tipo de Usuario</ion-label>
             <ion-select value="dog" formControlName="typeUser">
-              <ion-select-option value="{{item.key}}" *ngFor="let item of typeUser | keyvalue">{{item.value}}
+              <ion-select-option
+                value="{{item.key}}"
+                *ngFor="let item of typeUser | keyvalue"
+                >{{item.value}}
               </ion-select-option>
             </ion-select>
-          </ion-item>  
+          </ion-item>
 
           <ion-button
             type="submit"
@@ -70,10 +101,7 @@
             >Submit</ion-button
           >
         </ion-card>
-      </ion-col> 
-        
+      </ion-col>
     </ion-row>
   </form>
-
 </ion-content>
-

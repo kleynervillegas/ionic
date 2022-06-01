@@ -135,7 +135,7 @@ export class ProductPage implements OnInit {
       return null;
     }
   });
-  async deleteImage(key: number) {
+  async deleteImage(value: string) {
     const alert = await this.alertController.create({
       header: 'Desea eliminar esta imagen',
       buttons: [
@@ -148,7 +148,7 @@ export class ProductPage implements OnInit {
         {
           text: 'Si',
           handler: () => {
-            delete this.filesShow[key];
+            this.filesShow = this.filesShow.filter(word => word !== value);
             this.countfiles = this.countfiles - 1;
           }
         }

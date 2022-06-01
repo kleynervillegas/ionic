@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar color="mycolor">
+    <ion-buttons [routerLink]="['/home/publications']" slot="start">
+      <ion-button>
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title [routerLink]="['/home/publications']">Registro de Productos</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -89,7 +94,7 @@
 
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let image of filesShow | keyvalue">
-        <ion-card (click)="deleteImage(image.key)" title="eliminer">
+        <ion-card (click)="deleteImage(image.value)" title="eliminer">
           <img [src]="image.value" alt="" style="width: 70px; height: 65px" />
         </ion-card>
       </ion-col>

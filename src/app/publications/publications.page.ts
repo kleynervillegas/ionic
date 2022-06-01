@@ -8,35 +8,28 @@ import { ToastService } from 'src/app/services/toast/toast.service';
   styleUrls: ['./publications.page.scss'],
 })
 export class PublicationsPage implements OnInit {
-  public publications:any =[];
-  // public options = {
-  //   headers: {
-  //     // eslint-disable-next-line @typescript-eslint/naming-convention
-  //     'Content-Type': 'application/json',
-  //     'authorization': 'Bearer '+this.token,
-  //   }
-  // }
-  
+  public publications: any = [];
   constructor(
     private productsService: ProductsService,
     private toastService: ToastService,
   ) { }
 
   ngOnInit() {
+  }
+  ionViewDidEnter() {
     this.getAll();
-    }
-
- async getAll(){
+  }
+  async getAll() {
     const a = await this.productsService.getAll().subscribe(data => {
-      if(data.code===200){
-            this.publications= data.data;
-           return false;
-       }
-       this.toastService.toastNotific(data.status);
-     }, error => {
-       console.log(error);
-       return [];
-     });
+      if (data.code === 200) {
+        this.publications = data.data;
+        return false;
+      }
+      this.toastService.toastNotific(data.status);
+    }, error => {
+      console.log(error);
+      return [];
+    });
 
   }
 

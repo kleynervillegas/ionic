@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -80,7 +83,6 @@ export class RegistreUserPage implements OnInit {
 
   async registre() {
     const playload = this.fb.value;
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.fb.reset;
     const auth = await this.loginService.registreUser(playload).subscribe(data => {
       if (data === 200) {

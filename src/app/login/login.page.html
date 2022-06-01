@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="mycolor">
     <ion-title>LOGIN</ion-title>
-  </ion-toolbar> 
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <form [formGroup]="fb" (ngSubmit)="login()">
@@ -33,10 +33,13 @@
           >
         </ion-card>
       </ion-col>
-
- 
-        
-     <ion-button [routerLink]="['/registre-user']">!Registrarse Aqui</ion-button> 
+    </ion-row>
+    <ion-row>
+      <ion-col sizeLg="3" sizeMd="3" sizeXs="3" offset="7">
+        <ion-button class="registre-button" [routerLink]="['/registre-user']"
+          >!Registrarse Aqui</ion-button
+        >
+      </ion-col>
     </ion-row>
   </form>
 </ion-content>
