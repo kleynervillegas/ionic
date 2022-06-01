@@ -23,3 +23,7 @@ ion-title{
 .text-list{
     color: var(--ion-color-mycolor-shade);
 }
+ion-content {
+    // --background: url('/assets/img/ecommerce.jpg')  0/100% 100% no-repeat;
+    --background: rgb(231,231,231);
+}
