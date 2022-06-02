@@ -17,6 +17,7 @@ export interface ResponseDTO {
   status?: string;
   token?: string;
   tokenType?: string;
+  email?: string;
   count?: number;
   skip?: number;
   limit?: number;

@@ -6,16 +6,25 @@
       </ion-button>
     </ion-buttons>
     <ion-title [routerLink]="['/home/publications']">details Product</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-row>
     <ion-col sizeLg="6" sizeMd="6" sizeXs="4">
       <ion-card *ngFor="let image of productDetails.image">
-        <img
-          src="http://localhost:8000/api/products/get_image/{{image}}"
-          style="width: 44px; height: 44px"
-        />
+        <img src="http://localhost:8000/api/products/get_image/{{image}}" style="width: 44px; height: 44px" />
       </ion-card>
     </ion-col>
     <ion-col sizeLg="6" sizeMd="6" sizeXs="6">
@@ -23,6 +32,19 @@
       <ion-item> {{productDetails.name}} </ion-item>
       <h6>Precio</h6>
       <ion-item> {{productDetails.price}} </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col sizeLg="3" sizeMd="3" sizeXs="3">
+      <h6>Add</h6>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button>
+            <ion-icon style="color: black;" name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
     </ion-col>
   </ion-row>
 

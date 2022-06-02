@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/services/home/home.service';
+import { LocalStorageService } from 'src/app/services/LocalStorage/local-storage.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -11,37 +12,48 @@ export class HomePage implements OnInit {
   public permissiion: boolean;
   public searchedUser: any;
   token = localStorage.getItem('token');
-  public appPages = [ 
-    { title: 'Costomres',
-     url: '/home/customers',
-     icon: 'people'
-     },
-     { title: 'Cities',
-     url: '/home/card',
-     icon: 'people'
-     },
-    { title: 'Formulario',
-    url: '/home/form',
-    icon: 'people'
+  public email: string;
+  public appPages = [
+    // { title: 'Costomres',
+    //  url: '/home/customers',
+    //  icon: 'people'
+    //  },
+    //  { title: 'Cities',
+    //  url: '/home/card',
+    //  icon: 'people'
+    //  },
+    // { title: 'Formulario',
+    // url: '/home/form',
+    // icon: 'people'
+    // },
+    {
+      title: 'Productos',
+      url: '/home/product',
+      icon: 'planet'
     },
-    { title: 'Productos',
-    url: '/home/product',
-    icon: 'planet'
+    {
+      title: 'Publicaciones',
+      url: '/home/publications',
+      icon: 'planet'
     },
-    { title: 'Publicaciones',
-    url: '/home/publications',
-    icon: 'planet'
+    {
+      title: 'Cerrar Sesion',
+      url: '/home/form',
+      icon: 'people'
     },
   ];
   constructor(
     private router: Router,
     private homeService: HomeService,
+    private localStorageService: LocalStorageService,
+
   ) { }
 
   ngOnInit() {
     this.permissiion = true;
     this.getUser();
     // localStorage.clear();
+    this.email = this.localStorageService.getIEmail();
   }
 
   public gotoCustomers() {
@@ -49,7 +61,8 @@ export class HomePage implements OnInit {
   }
 
   getUser() {
-    this.homeService.getUserList().subscribe(res =>{ this.users = res;
+    this.homeService.getUserList().subscribe(res => {
+      this.users = res;
       this.searchedUser = this.users;
     });
   }
@@ -58,8 +71,8 @@ export class HomePage implements OnInit {
     const text = event.target.value;
     this.searchedUser = this.users;
     if (text && text.trim() !== '') {
-      this.searchedUser = this.searchedUser.filter((user: any)=>(user.name.toLowerCase().indexOf(text.toLowerCase()) > -1))
-       }
+      this.searchedUser = this.searchedUser.filter((user: any) => (user.name.toLowerCase().indexOf(text.toLowerCase()) > -1))
+    }
   }
   doRefresh(event) {
     this.getUser();
