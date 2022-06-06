@@ -27,6 +27,15 @@
   <ion-row>
     <ion-col sizeLg="6" sizeMd="6" sizeXs="6" *ngFor="let item of publications ">
       <ion-card>
+        <ion-item>
+          <ion-icon style="color: black;"  name="ellipsis-horizontal-outline"></ion-icon>
+          <ion-select interface="popover"> 
+            <ion-select-option value="nes" (click)="addCar(item)">Editar</ion-select-option>
+            <ion-select-option value="n64" (click)="addCar(item)">Eliminar</ion-select-option>          
+          </ion-select>
+        </ion-item>
+      
+
         <img [routerLink]="['/home/detailsProduct',item.id]"
           src="http://localhost:8000/api/products/get_image/{{item.image[0]}}" style="width: 120px; height: 100px" />
 
@@ -46,7 +55,7 @@
               </ion-button>
             </ion-buttons>
           </ion-toolbar>
-        </ion-col>
+        </ion-col>    
       </ion-card>
     </ion-col>
   </ion-row>
