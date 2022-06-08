@@ -36,9 +36,9 @@ export class PublicationsPage implements OnInit {
 
   }
 
-  async addCar(item: object)
+  async addCar(item)
    {
-    const a = await this.CardServiceController.addCar(item).subscribe(data => {
+    const a = await this.CardServiceController.addCar(item.id).subscribe(data => {
       if (data.code === 200) {
         this.publications = data.data;
         return false;

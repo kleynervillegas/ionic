@@ -11,6 +11,10 @@ export const URLSAuthentication = {
     CreateUser: 'http://localhost:8000/api/registre',
 };
 
+export const URLSNOTIFIC = {
+    CreateNotific: 'http://localhost:8000/api/auth/car/:id',
+};
+
 // export const URLS = {
 //     getOne: 'https://4650-190-202-2-197.ngrok.io/api/products/:id',
 //     created: 'https://4650-190-202-2-197.ngrok.io/api/products',
