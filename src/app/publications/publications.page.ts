@@ -13,6 +13,7 @@ export class PublicationsPage implements OnInit {
   constructor(
     private productsService: ProductsService,
     private toastService: ToastService,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     private CardServiceController: CardService,
 
   ) { }
@@ -39,11 +40,7 @@ export class PublicationsPage implements OnInit {
   async addCar(item)
    {
     const a = await this.CardServiceController.addCar(item.id).subscribe(data => {
-      if (data.code === 200) {
-        this.publications = data.data;
-        return false;
-      }
-      this.toastService.toastNotific(data.status);
+        this.toastService.toastNotific(data.message);
     }, error => {
       console.log(error);
       return [];
