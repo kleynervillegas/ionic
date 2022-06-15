@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { URLS } from 'src/urls/urls';
+import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ResponseDTO } from 'src/shared/dtos/responseDto';
+import { ToastService } from '../toast/toast.service';
 
 
 @Injectable({
@@ -18,19 +21,30 @@ export class ProductsService {
   };
 
   constructor(
-    public httpClient: HttpClient
-  ) { }
+    public httpClient: HttpClient,
+    private toastService: ToastService,
+) { }
   /**
    * create
    */
-  public create(data): Observable<any> {
-    return this.httpClient.post(URLS.created, data, this.options);
+  public create(data): Observable<ResponseDTO> {
+    return this.httpClient.post(URLS.created, data, this.options).pipe(
+      map((response: ResponseDTO) => {
+        if (response.code === 200) {
+          this.toastService.toastNotific(response.message);
+          return response.code;
+        }
+        this.toastService.toastNotific(response.message);
+        return response.code;
+      }),
+      catchError(({ error }) => [])
+    );
   }
 
   /**
    * getAll
    */
-  public getAll(): Observable<any>{
+  public getAll(): Observable<ResponseDTO>{
     return this.httpClient.get(URLS.getAllProducts,this.options);
   }
 
@@ -39,5 +53,19 @@ export class ProductsService {
    */
   public getDetailsProduct(id): Observable<any>{
     return this.httpClient.get(URLS.getDetailsProduct.replace(':id',id));
+  }
+
+  /**
+   * editProducto
+   */
+  public editProducto(item): Observable<ResponseDTO> {
+    return this.httpClient.get(URLS.getAllProducts,this.options);
+  }
+
+  /**
+   * deleteProducto
+   */
+  public deleteProducto(id): Observable<ResponseDTO> {
+    return this.httpClient.get(URLS.getAllProducts,this.options);
   }
 }

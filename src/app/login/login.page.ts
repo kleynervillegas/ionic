@@ -49,7 +49,6 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/home/publications']);
         return false;
       }
-      // this.toastService.toastNotific(data.message);
     });
 
   }

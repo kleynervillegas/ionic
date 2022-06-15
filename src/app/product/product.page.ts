@@ -4,8 +4,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlertController, ToastController } from '@ionic/angular';
-
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product',
   templateUrl: './product.page.html',
@@ -26,7 +25,8 @@ export class ProductPage implements OnInit {
     private toastService: ToastService,
     private sanitizer: DomSanitizer,
     public alertController: AlertController,
-  ) {
+    private ar: ActivatedRoute,
+      ) {
     this.builderOptions = {
       // _id: [null],
       name: [
@@ -82,19 +82,20 @@ export class ProductPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.ar.snapshot.paramMap.get('id') ?? ''){
+      this.setValueForm(this.ar.snapshot.paramMap.get('id'));
+    }
   }
 
   async submit() {
     if (!this.fb.invalid) {
       const data = this.fb.value;
       const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
-        if (data.code === 200) {
-          this.toastService.toastNotific('Producto Registrado Satisfactoriamente');
+        if (data === 200) {
           this.filesShow = [];
           this.fb.reset();
           return false;
         }
-        this.toastService.toastNotific(data.status);
       }, error => {
         this.toastService.toastNotific(error);
         return [];
@@ -156,6 +157,11 @@ export class ProductPage implements OnInit {
     });
     await alert.present();
     const result = await alert.onDidDismiss();
+  }
+
+  async setValueForm(id){
+    console.log('consultar servicio para traer los datos a edityar');
+
   }
 
 }
