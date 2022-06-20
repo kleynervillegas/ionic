@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { URLS, URLSAuthentication } from 'src/urls/urls';
+import { URLS, urlsAuthentication} from 'src/urls/urls';
 import { LocalStorageService } from '../LocalStorage/local-storage.service';
 import { ResponseDTO } from 'src/shared/dtos/responseDto';
 import { ToastService } from '../toast/toast.service';
@@ -29,7 +29,7 @@ export class LoginService {
    * validateUser
    */
   public validateUser(data): Observable<ResponseDTO> {
-    return this.http.post(URLSAuthentication.validateAuthentication, data, this.options).pipe(
+    return this.http.post(urlsAuthentication.validateAuthentication, data, this.options).pipe(
       map((response: ResponseDTO) => {
         if (response.code === 200) {
           this.localStorageController.setItem(response.token,response.email);
@@ -47,7 +47,7 @@ export class LoginService {
    * registreUser
 data   */
   public registreUser(data): Observable<ResponseDTO> {
-    return this.http.post(URLSAuthentication.CreateUser, data, this.options).pipe(
+    return this.http.post(urlsAuthentication.createUser, data, this.options).pipe(
       map((response: ResponseDTO) => {
         if (response.code === 200) {
           this.toastService.toastNotific(response.message);
