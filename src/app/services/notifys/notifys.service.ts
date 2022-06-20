@@ -14,7 +14,7 @@ export class NotifysService {
   public options = {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'authorization': 'Bearer ' + this.token,
     }
   };
@@ -27,8 +27,8 @@ export class NotifysService {
   /**
    * create
    */
-  public create() {
-    return this.http.post(urlsNotify.createNotify, data, this.options).pipe(
+  public create(description:string,origin:string,sendUser:boolean) {
+    return this.http.post(urlsNotify.createNotify, {description:description,origin:origin,sendUser:sendUser}, this.options).pipe(
       map((response: ResponseDTO) => {
         if (response.code === 200) {
           this.toastService.toastNotific(response.message);

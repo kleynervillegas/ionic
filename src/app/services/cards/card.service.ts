@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ResponseDTO } from 'src/shared/dtos/responseDto';
 import { ToastService } from '../toast/toast.service';
+import { NotifysService } from '../notifys/notifys.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,14 @@ export class CardService {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
-      'authorization': 'Bearer ' + this.token,
+      'authorization': 'Bearer '+this.token,
     }
   };
-
+  
   constructor(
     private httpClient: HttpClient,
     private toastService: ToastService,
+    private notifysService: NotifysService,
   ) { }
 
   public getCities(): Observable<any> {
