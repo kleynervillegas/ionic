@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { CardService } from 'src/app/services/cards/card.service';
+import { NotifysService } from 'src/app/services/notifys/notifys.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,18 +12,21 @@ import { Router } from '@angular/router';
 })
 export class PublicationsPage implements OnInit {
   public publications: any = [];
+  public notifications: any = [];
   constructor(
     private productsService: ProductsService,
     private toastService: ToastService,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     private CardServiceController: CardService,
     private router: Router,
+    private notifysService: NotifysService,
   ) { }
 
   ngOnInit() {
   }
   ionViewDidEnter() {
     this.getAll();
+    this.getNotifyUser();
   }
   async getAll() {
     const a = await this.productsService.getAll().subscribe(data => {
@@ -47,6 +51,17 @@ export class PublicationsPage implements OnInit {
       console.log(error);
       return [];
     });
+  }
+
+  async getNotifyUser() {
+    const a = await  this.notifysService.getNotifyUser().subscribe(data => {
+        this.notifications =data;
+        console.log( this.notifications);
+    }, error => {
+      console.log(error);
+      return [];
+    });
+
   }
 
   async editProducto(item)

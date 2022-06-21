@@ -32,7 +32,7 @@ export class LoginService {
     return this.http.post(urlsAuthentication.validateAuthentication, data, this.options).pipe(
       map((response: ResponseDTO) => {
         if (response.code === 200) {
-          this.localStorageController.setItem(response.token,response.email);
+          this.localStorageController.setItem(response.token,response.data);
           this.toastService.toastNotific(response.message);
           return response.code;
         }

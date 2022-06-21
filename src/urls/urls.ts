@@ -14,6 +14,7 @@ export const urlsCars = {
 };
 export const urlsNotify = {
     createNotify: 'http://localhost:8000/api/auth/notify',
+    getNotifyUser: 'http://localhost:8000/api/auth/notify/getNotifyUser/:id',
 };
 
 

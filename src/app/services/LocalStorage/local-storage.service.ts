@@ -6,18 +6,16 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   public localStorage: any;
-  public token: any;
-
   constructor() { }
-  public setItem(token,email) {
+  public setItem(token,user) {
       this.localStorage=   localStorage.setItem('token', token);
-      this.localStorage=   localStorage.setItem('email', email);
+      this.localStorage=   localStorage.setItem('user', JSON.stringify(user));
   }
 
   public getIToken(){
-    return this.token = localStorage.getItem('token');
+    return localStorage.getItem('token');
   }
-  public getIEmail(){
-    return this.token = localStorage.getItem('email');
+  public getIDataUser(){
+    return JSON.parse(localStorage.getItem('user'));
   }
 }

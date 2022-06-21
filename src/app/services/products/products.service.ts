@@ -5,6 +5,8 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ResponseDTO } from 'src/shared/dtos/responseDto';
 import { ToastService } from '../toast/toast.service';
+import { NotifysService } from '../notifys/notifys.service';
+
 
 
 @Injectable({
@@ -23,6 +25,7 @@ export class ProductsService {
   constructor(
     public httpClient: HttpClient,
     private toastService: ToastService,
+    private notifysService: NotifysService,
 ) { }
   /**
    * create

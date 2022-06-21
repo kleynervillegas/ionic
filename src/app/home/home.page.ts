@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
   public permissiion: boolean;
   public searchedUser: any;
   token = localStorage.getItem('token');
-  public email: string;
+  public dataUser: any;
   public appPages = [
     // { title: 'Costomres',
     //  url: '/home/customers',
@@ -53,7 +53,7 @@ export class HomePage implements OnInit {
     this.permissiion = true;
     this.getUser();
     // localStorage.clear();
-    this.email = this.localStorageService.getIEmail();
+    this.dataUser = this.localStorageService.getIDataUser();
   }
 
   public gotoCustomers() {
