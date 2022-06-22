@@ -1,23 +1,23 @@
 <ion-header>
   <ion-toolbar color="mycolor">
-    <ion-buttons [routerLink]="['/home/product']" slot="start">
+    <ion-buttons [routerLink]="['/home']" slot="start">
       <ion-button>
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title [routerLink]="['/home/product']">publications</ion-title>
+    <ion-title [routerLink]="['/home']">publications</ion-title>
 
-    <ion-buttons slot="end">
+    <ion-buttons (click)="seedNotifications()" slot="end">
       <ion-button>
-        <ion-text color="danger">{{this.notifications.length}}</ion-text>
+        <ion-text class="text-list">{{this.notifications.length}}</ion-text>
         <ion-icon name="notifications-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons slot="end">
+    <ion-buttons (click)="seedCar()"  slot="end">
       <ion-button>
         <ion-icon name="cart-outline"> </ion-icon>
-        <ion-text color="danger"></ion-text>
+        <ion-text class="text-list"></ion-text>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

@@ -38,6 +38,10 @@ const routes: Routes = [
       {
         path: 'product/edit/:id',
         loadChildren: () => import('../product/product.module').then(m => m.ProductPageModule)
+      },
+      {
+        path: 'notifications',
+        loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule)
       }
     ],
   }

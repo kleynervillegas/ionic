@@ -42,10 +42,9 @@ export class PublicationsPage implements OnInit {
 
   }
 
-  async addCar(item)
-   {
+  async addCar(item) {
     const a = await this.CardServiceController.addCar(item.id).subscribe(data => {
-      if(data===200){
+      if (data === 200) {
       }
     }, error => {
       console.log(error);
@@ -54,9 +53,9 @@ export class PublicationsPage implements OnInit {
   }
 
   async getNotifyUser() {
-    const a = await  this.notifysService.getNotifyUser().subscribe(data => {
-        this.notifications =data;
-        console.log( this.notifications);
+    const a = await this.notifysService.getNotifyUser().subscribe(data => {
+      this.notifications = data;
+      console.log(this.notifications);
     }, error => {
       console.log(error);
       return [];
@@ -64,20 +63,22 @@ export class PublicationsPage implements OnInit {
 
   }
 
-  async editProducto(item)
-  {
-    this.router.navigate(['/home/product/edit/',item.id]);
- }
+  async editProducto(item) {
+    this.router.navigate(['/home/product/edit/', item.id]);
+  }
 
- async deleteProducto(item)
- {
-  const a = await this.productsService.deleteProducto(item.id).subscribe(data => {
-    if(data===200){
-    }
-  }, error => {
-    console.log(error);
-    return [];
-  });
-}
+  async deleteProducto(item) {
+    const a = await this.productsService.deleteProducto(item.id).subscribe(data => {
+      if (data === 200) {
+      }
+    }, error => {
+      console.log(error);
+      return [];
+    });
+  }
+
+  seedNotifications() {
+    this.router.navigate(['/home/notifications/']);
+  }
 
 }

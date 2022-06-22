@@ -15,6 +15,7 @@ export class ProductPage implements OnInit {
   public file: any = [];
   public filesShow: any = [];
   public countfiles = 0;
+  public productDetails: any = [];
   private builderOptions: any;
   // eslint-disable-next-line @typescript-eslint/member-ordering
   public coin: any = ['Dolar', 'Bolivares'];
@@ -28,7 +29,7 @@ export class ProductPage implements OnInit {
     private ar: ActivatedRoute,
       ) {
     this.builderOptions = {
-      // _id: [null],
+      _id: [null],
       name: [
         null,
         [
@@ -82,6 +83,8 @@ export class ProductPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+  ionViewDidEnter() {
     if(this.ar.snapshot.paramMap.get('id') ?? ''){
       this.setValueForm(this.ar.snapshot.paramMap.get('id'));
     }
@@ -89,17 +92,21 @@ export class ProductPage implements OnInit {
 
   async submit() {
     if (!this.fb.invalid) {
-      const data = this.fb.value;
-      const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
-        if (data === 200) {
-          this.filesShow = [];
-          this.fb.reset();
-          return false;
-        }
-      }, error => {
-        this.toastService.toastNotific(error);
-        return [];
-      });
+      if(this.fb.get('_id').value===null){
+          const data = this.fb.value;
+          const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
+            if (data === 200) {
+              this.filesShow = [];
+              this.fb.reset();
+              return false;
+            }
+          }, error => {
+            this.toastService.toastNotific(error);
+            return [];
+          });
+      }else{
+          console.log('edit');
+      }
     }
   }
   ///////////////////////////////////////
@@ -160,8 +167,20 @@ export class ProductPage implements OnInit {
   }
 
   async setValueForm(id){
-    console.log('consultar servicio para traer los datos a edityar');
-
-  }
-
+      const productDetails = await this.productsService.getDetailsProduct(id).subscribe(data => {
+        this.productDetails = data.data;
+        const patchValue = {
+          _id:this.productDetails.id,
+          name:this.productDetails.name,
+          description:this.productDetails.description,
+          coin:this.productDetails.coin,
+          price:this.productDetails.price,
+          stopMax:this.productDetails.stopMax,
+          stopMin:this.productDetails.stopMin,
+          image:'dsdddddddddddddddd',
+        };
+        this.filesShow= this.productDetails.image;
+        this.fb.patchValue( patchValue );
+      });
+    }
 }

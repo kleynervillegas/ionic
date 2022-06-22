@@ -22,10 +22,11 @@ export class HomePage implements OnInit {
     //  url: '/home/card',
     //  icon: 'people'
     //  },
-    // { title: 'Formulario',
-    // url: '/home/form',
-    // icon: 'people'
-    // },
+    {
+      title: 'notifications',
+      url: '/home/notifications',
+      icon: 'notifications'
+    },
     {
       title: 'Productos',
       url: '/home/product',
