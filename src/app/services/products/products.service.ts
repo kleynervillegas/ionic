@@ -44,6 +44,24 @@ export class ProductsService {
     );
   }
 
+
+    /**
+   * update
+   */
+     public update(data): Observable<ResponseDTO> {
+      return this.httpClient.post(URLS.updateProduct, data, this.options).pipe(
+        map((response: ResponseDTO) => {
+          if (response.code === 200) {
+            this.toastService.toastNotific(response.message);
+            return response.code;
+          }
+          this.toastService.toastNotific(response.message);
+          return response.code;
+        }),
+        catchError(({ error }) => [])
+      );
+    }
+
   /**
    * getAll
    */
@@ -69,6 +87,14 @@ export class ProductsService {
    * deleteProducto
    */
   public deleteProducto(id): Observable<ResponseDTO> {
-    return this.httpClient.get(URLS.getAllProducts,this.options);
+   return this.httpClient.delete(URLS.deleteProduct.replace(':id',id),this.options).pipe(
+      map((response: ResponseDTO) => {
+        if (response.code === 200) {
+          return response.code;
+        }
+        return response.code;
+      }),
+      catchError(({ error }) => [])
+    );
   }
 }

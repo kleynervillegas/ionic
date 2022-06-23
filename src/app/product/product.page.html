@@ -6,7 +6,7 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title [routerLink]="['/home/publications']">Registro de Productos</ion-title>
+    <ion-title [routerLink]="['/home/publications']">{{fb.get('id').value !== null ?'Editar Producto':'Registar Producto'}}</ion-title>
     
     <ion-buttons slot="end">
       <ion-button>
@@ -27,7 +27,7 @@
     <ion-row>
       <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
         <ion-item>
-          <ion-input type="hidden" formControlName="_id"></ion-input>
+          <ion-input type="hidden" formControlName="id"></ion-input>
           <ion-label position="floating">Nombre</ion-label>
           <ion-input type="text" placeholder="Nombre producto" formControlName="name"></ion-input>
         </ion-item>
@@ -105,19 +105,16 @@
         </ion-text>
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let image of filesShow | keyvalue">
         <ion-card (click)="deleteImage(image.value)" title="eliminer">
-          <img [src]="image.value" alt="" style="width: 70px; height: 65px" />
+          <img [src]="fb.get('id').value !== null ? 'http://localhost:8000/api/products/get_image/'+image.value: image.value" alt="" style="width: 70px; height: 65px" />
         </ion-card>
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" offset="3">
-        <ion-button type="button" color="primary" [disabled]="this.fb.invalid" (click)="submit()">Agregar
-        </ion-button>
+        <ion-button type="button" color="primary" [disabled]="this.fb.invalid" (click)="submit()">{{fb.get('id').value !== null ?'Editar':'Agregar'}}</ion-button>
       </ion-col>
     </ion-row>
   </form>

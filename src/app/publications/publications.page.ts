@@ -69,7 +69,9 @@ export class PublicationsPage implements OnInit {
 
   async deleteProducto(item) {
     const a = await this.productsService.deleteProducto(item.id).subscribe(data => {
+      console.log(data);
       if (data === 200) {
+        this.ionViewDidEnter();
       }
     }, error => {
       console.log(error);

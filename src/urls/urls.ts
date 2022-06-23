@@ -3,6 +3,8 @@ export const URLS = {
     created: 'http://localhost:8000/api/auth/products',
     getAllProducts: 'http://localhost:8000/api/auth/products',
     getDetailsProduct: 'http://localhost:8000/api/products/detailsproduct/:id',
+    deleteProduct: 'http://localhost:8000/api/auth/products/:id',
+    updateProduct: 'http://localhost:8000/api/auth/products/edit',
 };
 export const urlsAuthentication = {
     validateAuthentication: 'http://localhost:8000/api/login',

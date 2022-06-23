@@ -27,9 +27,9 @@ export class ProductPage implements OnInit {
     private sanitizer: DomSanitizer,
     public alertController: AlertController,
     private ar: ActivatedRoute,
-      ) {
+  ) {
     this.builderOptions = {
-      _id: [null],
+      id: [null],
       name: [
         null,
         [
@@ -85,27 +85,35 @@ export class ProductPage implements OnInit {
   ngOnInit() {
   }
   ionViewDidEnter() {
-    if(this.ar.snapshot.paramMap.get('id') ?? ''){
+    if (this.ar.snapshot.paramMap.get('id') ?? '') {
       this.setValueForm(this.ar.snapshot.paramMap.get('id'));
     }
   }
 
   async submit() {
     if (!this.fb.invalid) {
-      if(this.fb.get('_id').value===null){
-          const data = this.fb.value;
-          const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
-            if (data === 200) {
-              this.filesShow = [];
-              this.fb.reset();
-              return false;
-            }
-          }, error => {
-            this.toastService.toastNotific(error);
-            return [];
-          });
-      }else{
-          console.log('edit');
+      if (this.fb.get('id').value === null) {
+        const data = this.fb.value;
+        const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
+          if (data === 200) {
+            this.filesShow = [];
+            this.fb.reset();
+            return false;
+          }
+        }, error => {
+          this.toastService.toastNotific(error);
+          return [];
+        });
+      } else {
+        const data = this.fb.value;
+        const a = await this.productsService.update({ ...data, image: this.filesShow }).subscribe(data => {
+          if (data === 200) {
+            return false;
+          }
+        }, error => {
+          this.toastService.toastNotific(error);
+          return [];
+        });
       }
     }
   }
@@ -166,21 +174,21 @@ export class ProductPage implements OnInit {
     const result = await alert.onDidDismiss();
   }
 
-  async setValueForm(id){
-      const productDetails = await this.productsService.getDetailsProduct(id).subscribe(data => {
-        this.productDetails = data.data;
-        const patchValue = {
-          _id:this.productDetails.id,
-          name:this.productDetails.name,
-          description:this.productDetails.description,
-          coin:this.productDetails.coin,
-          price:this.productDetails.price,
-          stopMax:this.productDetails.stopMax,
-          stopMin:this.productDetails.stopMin,
-          image:'dsdddddddddddddddd',
-        };
-        this.filesShow= this.productDetails.image;
-        this.fb.patchValue( patchValue );
-      });
-    }
+  async setValueForm(id) {
+    const productDetails = await this.productsService.getDetailsProduct(id).subscribe(data => {
+      this.productDetails = data.data;
+      const patchValue = {
+        id: this.productDetails.id,
+        name: this.productDetails.name,
+        description: this.productDetails.description,
+        coin: this.productDetails.coin,
+        price: this.productDetails.price,
+        stopMax: this.productDetails.stopMax,
+        stopMin: this.productDetails.stopMin,
+        image: [''],
+      };
+      this.filesShow = this.productDetails.image;
+      this.fb.patchValue(patchValue);
+    });
+  }
 }
