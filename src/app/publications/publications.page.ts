@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./publications.page.scss'],
 })
 export class PublicationsPage implements OnInit {
-  count:number= 1;
+  count = 1;
   public publications: any = [];
   public notifications: any = [];
   constructor(
