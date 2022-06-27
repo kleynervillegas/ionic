@@ -20,10 +20,6 @@ const routes: Routes = [
         loadChildren: () => import('../form/form.module').then(m => m.FormPageModule)
       },
       {
-        path: 'city/:id',
-        loadChildren: () => import('../city/city.module').then(m => m.CityPageModule)
-      },
-      {
         path: 'product',
         loadChildren: () => import('../product/product.module').then(m => m.ProductPageModule)
       },

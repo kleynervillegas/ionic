@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Alert } from 'selenium-webdriver';
+import { NotifysService } from 'src/app/services/notifys/notifys.service';
 import { CardService } from 'src/app/services/cards/card.service';
 
 @Component({
@@ -9,21 +10,41 @@ import { CardService } from 'src/app/services/cards/card.service';
   styleUrls: ['./card.page.scss'],
 })
 export class CardPage implements OnInit {
-  public cities: any = [];
-  public permissiion: boolean;
+  public cars: any = [];
+  public notifications: any = [];
 
   constructor(
     private cardService: CardService,
     public toastController: ToastController,
     public alertController: AlertController,
+    private notifysService: NotifysService,
   ) { }
 
   ngOnInit() {
-    this.permissiion = true;
-    this.getCities();
   }
-  getCities() {
-    this.cardService.getCities().subscribe(res => this.cities = res);
+
+  ionViewDidEnter() {
+    this.getCars();
+    this.getNotifyUser();
+  }
+  async getCars() {
+    const a = await this.cardService.getCars().subscribe(data => {
+      this.cars = data;
+      console.log( this.cars)
+    }, error => {
+      console.log(error);
+      return [];
+    });
+  }
+
+  async getNotifyUser() {
+    const a = await this.notifysService.getNotifyUser().subscribe(data => {
+      this.notifications = data;
+    }, error => {
+      console.log(error);
+      return [];
+    });
+
   }
 
   async presentToast1() {

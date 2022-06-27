@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./publications.page.scss'],
 })
 export class PublicationsPage implements OnInit {
+  count:number= 1;
   public publications: any = [];
   public notifications: any = [];
   constructor(
@@ -43,7 +44,7 @@ export class PublicationsPage implements OnInit {
   }
 
   async addCar(item) {
-    const a = await this.CardServiceController.addCar(item.id).subscribe(data => {
+    const a = await this.CardServiceController.addCar({...item,count:this.count+item.id}).subscribe(data => {
       if (data === 200) {
       }
     }, error => {
@@ -55,7 +56,6 @@ export class PublicationsPage implements OnInit {
   async getNotifyUser() {
     const a = await this.notifysService.getNotifyUser().subscribe(data => {
       this.notifications = data;
-      console.log(this.notifications);
     }, error => {
       console.log(error);
       return [];
@@ -80,6 +80,9 @@ export class PublicationsPage implements OnInit {
 
   seedNotifications() {
     this.router.navigate(['/home/notifications/']);
+  }
+  seedCar(){
+    this.router.navigate(['/home/card/']);
   }
 
 }

@@ -26,18 +26,25 @@ export class CardService {
     private notifysService: NotifysService,
   ) { }
 
-  public getCities(): Observable<any> {
-    return this.httpClient
-      .get('assets/files/json/cities.json')
-      .pipe(
-        map((res: any) => res.data));
+  public getCars(): Observable<ResponseDTO> {
+    return this.httpClient.get(urlsCars.gteCarsUser,this.options).pipe(
+      map((response: ResponseDTO) => {
+        if (response.code === 200) {
+          this.toastService.toastNotific(response.message);
+          return response.data;
+        }
+        this.toastService.toastNotific(response.message);
+        return response.code;
+      }),
+      catchError(({ error }) => [])
+    );
   }
 
   /**
    * AddCar
    */
-  public addCar(id): Observable<ResponseDTO> {
-    return this.httpClient.get(urlsCars.createCars.replace(':id',id),this.options).pipe(
+  public addCar(data): Observable<ResponseDTO> {
+    return this.httpClient.post(urlsCars.createCars,data,this.options).pipe(
       map((response: ResponseDTO) => {
         if (response.code === 200) {
           this.toastService.toastNotific(response.message);

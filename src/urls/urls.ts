@@ -12,7 +12,8 @@ export const urlsAuthentication = {
 };
 
 export const urlsCars = {
-    createCars: 'http://localhost:8000/api/auth/car/:id',
+    createCars: 'http://localhost:8000/api/auth/car',
+   gteCarsUser: 'http://localhost:8000/api/auth/car/getCarUser',
 };
 export const urlsNotify = {
     createNotify: 'http://localhost:8000/api/auth/notify',
