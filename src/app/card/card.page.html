@@ -1,36 +1,33 @@
 <ion-header>
   <ion-toolbar color="mycolor">
-    <ion-buttons [routerLink]="['/home']" slot="start">
+    <ion-buttons [routerLink]="['/home/publications']" slot="start">
       <ion-button>
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title [routerLink]="['/home']">Car</ion-title>
+    <ion-title [routerLink]="['/home/publications']">Carrito de Compras</ion-title>
 
     <ion-buttons (click)="seedNotifications()" slot="end">
       <ion-button>
         <ion-text class="text-list">{{this.notifications.length}}</ion-text>
         <ion-icon name="notifications-outline"></ion-icon>
       </ion-button>
-    </ion-buttons>
-
-    <ion-buttons (click)="seedCar()"  slot="end">
-      <ion-button>
-        <ion-icon name="cart-outline"> </ion-icon>
-        <ion-text class="text-list"></ion-text>
-      </ion-button>
-    </ion-buttons>
+    </ion-buttons>  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
- <ion-row>
-  <ion-col sizeLg="6" sizeMd="6" sizeXs="12" *ngFor="let item of cars ">
-       <ion-card  [routerLink]="['/city',item.id]">
-         <img src="http://localhost:8000/api/products/get_image/{{item.get_product.imageDecode[0]}}"/>
-          <div class="card-title" > {{item.get_product.name}}</div>
-      </ion-card>
-    </ion-col>
- </ion-row>
+  <ion-list>
+    <ion-item *ngFor="let item of cars">
+      <ion-avatar slot="start">
+        <img src="http://localhost:8000/api/products/get_image/{{item.get_product.imageDecode[0]}}"/>
+      </ion-avatar>
+      <ion-label>
+        <p class="text-list">{{item.get_product.name}}</p>
+      </ion-label>
+      {{item.get_product.price}}
+    </ion-item>
+    <ion-text class="text-list">total: $456465</ion-text>
+  </ion-list>
 <ion-content>
 

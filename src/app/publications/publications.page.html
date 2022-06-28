@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title [routerLink]="['/home']">publications</ion-title>
+    <ion-title [routerLink]="['/home']">publicaciones</ion-title>
 
     <ion-buttons (click)="seedNotifications()" slot="end">
       <ion-button>
@@ -70,7 +70,7 @@
                   name="add-circle-outline"
                 ></ion-icon>
               </ion-button>
-              <ion-input class="count-producto" type="number" [(ngModel)]="count+item.id"></ion-input>
+              <ion-input class="count-producto" type="number" id="count+item.id" (ionChange)="handlerInput($event.target.value)" value="1"></ion-input>
             </ion-buttons>
           </ion-toolbar>
         </ion-col>
