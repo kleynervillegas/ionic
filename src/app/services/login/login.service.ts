@@ -31,10 +31,10 @@ export class LoginService {
   public validateUser(data): Observable<ResponseDTO> {
     return this.http.post(urlsAuthentication.validateAuthentication, data, this.options).pipe(
       map((response: ResponseDTO) => {
-        if (response.code === 200) {
-          this.localStorageController.setItem(response.token,response.data);
+        if (response.status === 200) {
+          this.localStorageController.setItem(response.data.authorization, response.data.authorization);
           this.toastService.toastNotific(response.message);
-          return response.code;
+          return response.status;
         }
         this.toastService.toastNotific(response.message);
         return response.code;
@@ -57,7 +57,8 @@ data   */
         return response.code;
       }),
       catchError((error) => {
-          error.error.forEach(element => {
+        console.log(error.error.message);
+        error.error.message.forEach(element => {
             this.toastService.toastNotific(element);
           });
         return [];

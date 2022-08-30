@@ -18,7 +18,7 @@ export class ProductsService {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
-      'authorization': 'Bearer '+this.token,
+      'token': this.token,
     }
   };
 

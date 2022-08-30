@@ -29,7 +29,7 @@
       sizeLg="6"
       sizeMd="6"
       sizeXs="6"
-      *ngFor="let item of publications "
+      *ngFor="let item of publications.publications "
     >
       <ion-card>
         <ion-item>
@@ -49,7 +49,7 @@
 
         <img
           [routerLink]="['/home/detailsProduct',item.id]"
-          src="http://localhost:8000/api/products/get_image/{{item.image[0]}}"
+          src="http://localhost/{{item.gallerys_images[0].url_image}}"
           style="width: 120px; height: 100px"
         />
 

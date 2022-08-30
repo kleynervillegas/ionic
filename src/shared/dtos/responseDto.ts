@@ -11,11 +11,12 @@
 export interface ResponseDTO {
 
   code?: number;
-  data?: unknown;
+  data?: any;
   expiresIn?: number;
   message?: string;
-  status?: string;
+  status?: number;
   token?: string;
+  authorization?: string;
   tokenType?: string;
   email?: string;
   count?: number;

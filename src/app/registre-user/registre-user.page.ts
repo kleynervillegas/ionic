@@ -30,18 +30,24 @@ export class RegistreUserPage implements OnInit {
   ) {
     this.builderOptions = {
       // _id: [null],
-      FullName: [
+      full_name: [
         null,
         [
           Validators.required,
         ],
       ],
-      LastNames: [
+      last_names: [
         null,
         [Validators.required
         ],
       ],
-      NumberId: [
+      number_id: [
+        null,
+        [Validators.required,
+          Validators.pattern(REGEX_NUMERIC),
+        ],
+      ],
+      type_number_id: [
         null,
         [Validators.required,
           Validators.pattern(REGEX_NUMERIC),
@@ -52,13 +58,18 @@ export class RegistreUserPage implements OnInit {
         [Validators.required
         ],
       ],
+      number_phone: [
+        null,
+        [Validators.required
+        ],
+      ],
       email: [
         null,
         [Validators.required,
           Validators.pattern(REGEX_EMAIL),
         ],
       ],
-      typeUser: [
+      role_id: [
         null,
         [Validators.required
         ],
@@ -66,11 +77,6 @@ export class RegistreUserPage implements OnInit {
       password_confirmation: [
         null,
         [Validators.required,
-        ],
-      ],
-      typeNumberId: [
-        null,
-        [Validators.required
         ],
       ]
     };

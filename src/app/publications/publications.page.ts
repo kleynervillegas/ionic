@@ -27,13 +27,14 @@ export class PublicationsPage implements OnInit {
   }
   ionViewDidEnter() {
     this.getAll();
-    this.getNotifyUser();
+    // this.getNotifyUser();
   }
   async getAll() {
     const a = await this.productsService.getAll().subscribe(data => {
-      if (data.code === 200) {
+      if (data.status === 200) {
         this.publications = data.data;
-        return false;
+        console.log( this.publications.publications);
+           return false;
       }
       this.toastService.toastNotific(data.status);
     }, error => {

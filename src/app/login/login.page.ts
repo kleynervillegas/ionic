@@ -47,7 +47,6 @@ export class LoginPage implements OnInit {
     const auth = await this.loginService.validateUser(playload).subscribe(data => {
       if (data === 200) {
         this.router.navigate(['/home/publications']);
-        return false;
       }
     });
 
