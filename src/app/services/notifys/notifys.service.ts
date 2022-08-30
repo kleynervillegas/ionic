@@ -17,7 +17,7 @@ export class NotifysService {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
-      'authorization': 'Bearer ' + this.token,
+      'token': this.token,
     }
   };
 
@@ -48,15 +48,6 @@ export class NotifysService {
    * getNotificUser
    */
   public getNotifyUser(): Observable<ResponseDTO> {
-    const dataUser = this.localStorageService.getIDataUser();
-    return this.http.get(urlsNotify.getNotifyUser.replace(':id',dataUser.id),this.options).pipe(
-      map((response: ResponseDTO) => {
-        if (response.code === 200) {
-          return response.data;
-        }
-        return response.code;
-      }),
-      catchError(({ error }) => [])
-    );
+    return this.http.get(urlsNotify.getNotifyUser,this.options);
   }
 }

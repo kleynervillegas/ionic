@@ -18,6 +18,7 @@ export class ProductsService {
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
+      // eslint-disable-next-line quote-props
       'token': this.token,
     }
   };
@@ -33,9 +34,9 @@ export class ProductsService {
   public create(data): Observable<ResponseDTO> {
     return this.httpClient.post(URLS.created, data, this.options).pipe(
       map((response: ResponseDTO) => {
-        if (response.code === 200) {
+        if (response.status === 200) {
           this.toastService.toastNotific(response.message);
-          return response.code;
+          return response.status;
         }
         this.toastService.toastNotific(response.message);
         return response.code;
@@ -73,7 +74,7 @@ export class ProductsService {
    * getDetailsProduct
    */
   public getDetailsProduct(id): Observable<any>{
-    return this.httpClient.get(URLS.getDetailsProduct.replace(':id',id));
+    return this.httpClient.get(URLS.getDetailsProduct.replace(':id',id),this.options);
   }
 
   /**
@@ -87,14 +88,6 @@ export class ProductsService {
    * deleteProducto
    */
   public deleteProducto(id): Observable<ResponseDTO> {
-   return this.httpClient.delete(URLS.deleteProduct.replace(':id',id),this.options).pipe(
-      map((response: ResponseDTO) => {
-        if (response.code === 200) {
-          return response.code;
-        }
-        return response.code;
-      }),
-      catchError(({ error }) => [])
-    );
+   return this.httpClient.delete(URLS.deleteProduct.replace(':id',id),this.options);
   }
 }

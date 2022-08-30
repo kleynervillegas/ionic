@@ -1,6 +1,12 @@
 ion-menu ion-content {
     --background: var(--ion-item-background, var(--ion-background-color, #fff));
   }
+
+  .my-color {
+    background-color: var(--ion-color-mycolor);
+    color: #d7d8da;
+    text-align: center;
+}
   
   ion-menu.md ion-content {
     --padding-start: 8px;

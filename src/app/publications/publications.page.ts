@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./publications.page.scss'],
 })
 export class PublicationsPage implements OnInit {
-  public count =1;
+  public count = 1;
   public publications: any = [];
   public notifications: any = [];
   constructor(
@@ -27,40 +27,35 @@ export class PublicationsPage implements OnInit {
   }
   ionViewDidEnter() {
     this.getAll();
-    // this.getNotifyUser();
+    this.getNotifyUser();
   }
   async getAll() {
     const a = await this.productsService.getAll().subscribe(data => {
       if (data.status === 200) {
         this.publications = data.data;
-        console.log( this.publications.publications);
-           return false;
+        return false;
       }
       this.toastService.toastNotific(data.status);
     }, error => {
       console.log(error);
-      return [];
     });
 
   }
 
   async addCar(item) {
     console.log(this.count);
-    const a = await this.CardServiceController.addCar({...item,count:this.count}).subscribe(data => {
-      if (data === 200) {
-      }
+    const a = await this.CardServiceController.addCar({ publication_id: item.id, count: this.count }).subscribe(data => {
+      this.toastService.toastNotific(data.message);
     }, error => {
-      console.log(error);
-      return [];
+      this.toastService.toastNotific(error.message);
     });
   }
 
   async getNotifyUser() {
     const a = await this.notifysService.getNotifyUser().subscribe(data => {
-      this.notifications = data;
+      this.notifications = data.data;
     }, error => {
       console.log(error);
-      return [];
     });
 
   }
@@ -71,12 +66,11 @@ export class PublicationsPage implements OnInit {
 
   async deleteProducto(item) {
     const a = await this.productsService.deleteProducto(item.id).subscribe(data => {
-      if (data === 200) {
+      if (data.status === 200) {
         this.ionViewDidEnter();
       }
     }, error => {
       console.log(error);
-      return [];
     });
   }
 
@@ -87,7 +81,7 @@ export class PublicationsPage implements OnInit {
     this.router.navigate(['/home/card/']);
   }
 
-  handlerInput(value,id) {
+  handlerInput(value, id) {
     this.count = value;
   }
 }

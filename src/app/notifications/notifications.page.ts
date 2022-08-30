@@ -21,13 +21,11 @@ export class NotificationsPage implements OnInit {
 
   async getNotifyUser() {
     const a = await this.notifysService.getNotifyUser().subscribe(data => {
-      this.notifications = data;
+      this.notifications = data.data;
     }, error => {
       console.log(error);
-      return [];
     });
 
   }
-
 
 }

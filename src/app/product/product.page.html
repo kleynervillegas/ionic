@@ -76,7 +76,7 @@
       <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
         <ion-item>
           <ion-label position="floating">Limite Minimo</ion-label>
-          <ion-input type="text" placeholder="Minimo de Productos" formControlName="stopMin"></ion-input>
+          <ion-input type="text" placeholder="Minimo de Productos" formControlName="stop_min"></ion-input>
         </ion-item>
         <ion-text color="danger" *ngIf="fb.controls.stopMin?.touched && !fb.controls.stopMin.valid">Campo Obligatorio
         </ion-text>
@@ -87,7 +87,7 @@
       <ion-col sizeLg="10" sizeMd="10" sizeXs="10">
         <ion-item>
           <ion-label position="floating">Limite Maximo</ion-label>
-          <ion-input type="text" placeholder="Maximo de Productos" formControlName="stopMax"></ion-input>
+          <ion-input type="text" placeholder="Maximo de Productos" formControlName="stop_max"></ion-input>
         </ion-item>
         <ion-text color="danger" *ngIf="fb.controls.stopMax?.touched && !fb.controls.stopMax.valid">Campo Obligatorio
         </ion-text>
@@ -108,7 +108,7 @@
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let image of filesShow | keyvalue">
         <ion-card (click)="deleteImage(image.value)" title="eliminer">
-          <img [src]="fb.get('id').value !== null ? 'http://localhost:8000/api/products/get_image/'+image.value: image.value" alt="" style="width: 70px; height: 65px" />
+          <img [src]="fb.get('id').value !== null ? 'http://localhost/'+image.value: image.value" alt="" style="width: 70px; height: 65px" />
         </ion-card>
       </ion-col>
     </ion-row>

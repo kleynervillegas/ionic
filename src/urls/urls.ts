@@ -1,9 +1,9 @@
 export const URLS = {
     getOne: 'http://localhost:8000/auth/products/:id',
-    created: 'http://localhost:8000/auth/products',
+    created: 'http://localhost:8000/publication/create',
     getAllProducts: 'http://localhost:8000/publication/getall/publications',
-    getDetailsProduct: 'http://localhost:8000/products/detailsproduct/:id',
-    deleteProduct: 'http://localhost:8000/auth/products/:id',
+    getDetailsProduct: 'http://localhost:8000/publication/getone/publications/:id',
+    deleteProduct: 'http://localhost:8000/publication/disabled/publications/:id',
     updateProduct: 'http://localhost:8000/auth/products/edit',
 };
 export const urlsAuthentication = {
@@ -12,12 +12,12 @@ export const urlsAuthentication = {
 };
 
 export const urlsCars = {
-    createCars: 'http://localhost:8000/auth/car',
-   gteCarsUser: 'http://localhost:8000/auth/car/getCarUser',
+    createCars: 'http://localhost:8000/car/create',
+    gteCarsUser: 'http://localhost:8000/car/getall/car/User',
 };
 export const urlsNotify = {
     createNotify: 'http://localhost:8000/auth/notify',
-    getNotifyUser: 'http://localhost:8000/auth/notify/getNotifyUser/:id',
+    getNotifyUser: 'http://localhost:8000/notify/getall/notify/User',
 };
 
 

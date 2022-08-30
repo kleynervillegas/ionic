@@ -23,8 +23,8 @@
 <ion-content>
   <ion-row>
     <ion-col sizeLg="6" sizeMd="6" sizeXs="4">
-      <ion-card *ngFor="let image of productDetails.image">
-        <img src="http://localhost:8000/api/products/get_image/{{image}}" style="width: 44px; height: 44px" />
+      <ion-card *ngFor="let image of productDetails.gallerys_images">
+        <img src="http://localhost/{{image.url_image}}" style="width: 44px; height: 44px" />
       </ion-card>
     </ion-col>
     <ion-col sizeLg="6" sizeMd="6" sizeXs="6">

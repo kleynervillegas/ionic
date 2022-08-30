@@ -4,7 +4,8 @@ import { ProductsService } from 'src/app/services/products/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.page.html',
@@ -27,6 +28,8 @@ export class ProductPage implements OnInit {
     private sanitizer: DomSanitizer,
     public alertController: AlertController,
     private ar: ActivatedRoute,
+    private router: Router,
+
   ) {
     this.builderOptions = {
       id: [null],
@@ -55,7 +58,8 @@ export class ProductPage implements OnInit {
         Validators.pattern('[0-9,. ]*.'),
         ],
       ],
-      stopMin: [
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      stop_min: [
         null,
         [
           Validators.required,
@@ -64,7 +68,8 @@ export class ProductPage implements OnInit {
           Validators.maxLength(5),
         ],
       ],
-      stopMax: [
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      stop_max: [
         null,
         [
           Validators.required,
@@ -98,6 +103,7 @@ export class ProductPage implements OnInit {
           if (data === 200) {
             this.filesShow = [];
             this.fb.reset();
+            this.countfiles = 0;
             return false;
           }
         }, error => {
