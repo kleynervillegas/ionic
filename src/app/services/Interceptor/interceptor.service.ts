@@ -41,8 +41,7 @@ export class InterceptorService {
       .pipe(
         map((response) => response),
         catchError((error) => {
-          console.log(error.error);
-          if (error.error.status.message === 'Sesion Expirada') {
+          if (error.error.status === 403) {
             this.localStorageController.clearLocalStorage();
             this.router.navigate(['/login']);
           }

@@ -29,17 +29,16 @@ export class CardPage implements OnInit {
   }
   async getCars() {
     const a = await this.cardService.getCars().subscribe(data => {
-      this.cars = data;
+      this.cars = data.data;
       console.log( this.cars)
     }, error => {
       console.log(error);
-      return [];
     });
   }
 
   async getNotifyUser() {
     const a = await this.notifysService.getNotifyUser().subscribe(data => {
-      this.notifications = data;
+      this.notifications = data.data;
     }, error => {
       console.log(error);
       return [];
