@@ -9,8 +9,8 @@ export class LocalStorageService {
 
   public localStorage: any;
   constructor() { }
-  public setItem(token,user) {
-      user = jwt_decode(user);
+  public setItem(token) {
+      const user = jwt_decode(token);
       this.localStorage=   localStorage.setItem('token', token);
       this.localStorage=   localStorage.setItem('user', JSON.stringify(user));
   }
@@ -20,5 +20,8 @@ export class LocalStorageService {
   }
   public getIDataUser(){
     return JSON.parse(localStorage.getItem('user'));
+  }
+  public clearLocalStorage(){
+    return localStorage.clear();
   }
 }

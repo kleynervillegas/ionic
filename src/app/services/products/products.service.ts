@@ -1,93 +1,59 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { URLS } from 'src/urls/urls';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ResponseDTO } from 'src/shared/dtos/responseDto';
-import { ToastService } from '../toast/toast.service';
-import { NotifysService } from '../notifys/notifys.service';
-
-
+import { InterceptorService } from '../Interceptor/interceptor.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  public token = localStorage.getItem('token');
-  public options = {
-    headers: {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      'Content-Type': 'application/json',
-      // eslint-disable-next-line quote-props
-      'token': this.token,
-    }
-  };
 
   constructor(
-    public httpClient: HttpClient,
-    private toastService: ToastService,
-    private notifysService: NotifysService,
-) { }
+    private interceptorService: InterceptorService
+  ) { }
   /**
    * create
    */
   public create(data): Observable<ResponseDTO> {
-    return this.httpClient.post(URLS.created, data, this.options).pipe(
-      map((response: ResponseDTO) => {
-        if (response.status === 200) {
-          this.toastService.toastNotific(response.message);
-          return response.status;
-        }
-        this.toastService.toastNotific(response.message);
-        return response.code;
-      }),
-      catchError(({ error }) => [])
-    );
+    return this.interceptorService.httpInterception('POST', URLS.created, data);
   }
 
 
-    /**
-   * update
-   */
-     public update(data): Observable<ResponseDTO> {
-      return this.httpClient.post(URLS.updateProduct, data, this.options).pipe(
-        map((response: ResponseDTO) => {
-          if (response.code === 200) {
-            this.toastService.toastNotific(response.message);
-            return response.code;
-          }
-          this.toastService.toastNotific(response.message);
-          return response.code;
-        }),
-        catchError(({ error }) => [])
-      );
-    }
+  /**
+ * update
+ */
+  public update(data): Observable<ResponseDTO> {
+    return this.interceptorService.httpInterception('POST', URLS.updateProduct, data);
+  }
 
   /**
    * getAll
    */
-  public getAll(): Observable<ResponseDTO>{
-    return this.httpClient.get(URLS.getAllProducts,this.options);
+  public getAll(): Observable<ResponseDTO> {
+    return this.interceptorService.httpInterception('GET', URLS.getAllProducts, {});
   }
 
   /**
    * getDetailsProduct
    */
-  public getDetailsProduct(id): Observable<any>{
-    return this.httpClient.get(URLS.getDetailsProduct.replace(':id',id),this.options);
+  public getDetailsProduct(id): Observable<any> {
+    return this.interceptorService.httpInterception('GET', URLS.getDetailsProduct.replace(':id', id), {});
   }
 
   /**
    * editProducto
    */
   public editProducto(item): Observable<ResponseDTO> {
-    return this.httpClient.get(URLS.getAllProducts,this.options);
+    return this.interceptorService.httpInterception('GET', URLS.getAllProducts, {});
   }
 
   /**
    * deleteProducto
    */
   public deleteProducto(id): Observable<ResponseDTO> {
-   return this.httpClient.delete(URLS.deleteProduct.replace(':id',id),this.options);
+    return this.interceptorService.httpInterception('DELETE', URLS.deleteProduct.replace(':id', id), {});
+
   }
 }

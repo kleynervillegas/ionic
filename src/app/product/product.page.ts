@@ -4,7 +4,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -100,25 +100,24 @@ export class ProductPage implements OnInit {
       if (this.fb.get('id').value === null) {
         const data = this.fb.value;
         const a = await this.productsService.create({ ...data, image: this.filesShow }).subscribe(data => {
-          if (data === 200) {
-            this.filesShow = [];
-            this.fb.reset();
-            this.countfiles = 0;
-            return false;
-          }
+          this.filesShow = [];
+          this.fb.reset();
+          this.countfiles = 0;
+          this.toastService.toastNotific(data.message);
+          return false;
         }, error => {
           this.toastService.toastNotific(error);
-          return [];
+          return false;
         });
       } else {
         const data = this.fb.value;
         const a = await this.productsService.update({ ...data, image: this.filesShow }).subscribe(data => {
-          if (data === 200) {
-            return false;
-          }
+          this.toastService.toastNotific(data.message);
+          return false;
+
         }, error => {
           this.toastService.toastNotific(error);
-          return [];
+          return false;
         });
       }
     }
