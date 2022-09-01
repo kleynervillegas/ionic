@@ -41,7 +41,6 @@ export class InterceptorService {
       .pipe(
         map((response) => response),
         catchError((error) => {
-          console.log(error);
           if (error.status === 403) {
             this.localStorageController.clearLocalStorage();
             this.router.navigate(['/login']);
