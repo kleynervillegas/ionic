@@ -11,7 +11,6 @@ import { LocalStorageService } from '../services/LocalStorage/local-storage.serv
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  token = 'dsds45s4d4s5dsd455sd55sd5s4d55';
   public fb: FormGroup; // Form
   private builderOptions: any;
 
