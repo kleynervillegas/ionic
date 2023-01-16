@@ -25,7 +25,7 @@ export class LoginService {
    * validateUser
    */
   public validateUser(playload): Observable<ResponseDTO> {
-    return this.interceptorService.httpInterception('POST', urlsAuthentication.validateAuthentication, playload);
+    return this.interceptorService.httpInterception('POST', urlsAuthentication.validateAuthentication, playload,true);
   }
 
   /**

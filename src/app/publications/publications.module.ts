@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 
@@ -16,6 +16,8 @@ import { PublicationsPage } from './publications.page';
     IonicModule,
     PublicationsPageRoutingModule
   ],
-  declarations: [PublicationsPage]
+  declarations: [PublicationsPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class PublicationsPageModule {}

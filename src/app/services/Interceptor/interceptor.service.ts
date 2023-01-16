@@ -33,10 +33,11 @@ export class InterceptorService {
   public httpInterception(
     method: string,
     url: string,
-    playload: object
+    playload: object,
+    login: boolean = false
   ): Observable<any> {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    (url === 'http://localhost:8000/login') ? delete this.options.headers.token : this.options.headers.token = this.token;
+    (login) ? delete this.options.headers.token : this.options.headers.token = this.token;
     return this.http.request(method, url, { ...this.options, body: playload })
       .pipe(
         map((response) => response),
